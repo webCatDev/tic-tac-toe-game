@@ -1,0 +1,42 @@
+.scoreBoard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.player1,
+.player2 {
+  flex: 1;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.player2 {
+  justify-content: flex-end;
+}
+
+.iconBox {
+  border-radius: 100rem;
+  background-color: rgb(238, 227, 227);
+  padding: 0.5rem;
+}
+
+.iconBox,
+.playerName,
+.winCount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.player1 .playerName,
+.player2 .playerName {
+  text-transform: capitalize;
+  border-bottom: 0.5rem solid transparent;
+}
+
+.activePlayer .playerName {
+  border-bottom: 0.5rem solid var(--color-green);
+}
