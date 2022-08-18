@@ -23,15 +23,13 @@ const GameSettings = ({ dispatcher }) => {
   };
 
     const handleClickGameStart = () => {
-      console.log(characters)
+      
     dispatcher({
       type: "handleStart",
       payload: {
         player1Name: playerInfo["player-1-name"],
         player2Name: playerInfo["player-2-name"],
         player1Tag: playerInfo["player-1-tag"],
-        player1Image: characters[0],
-        player2Image: characters[1],
       },
     });
   };
