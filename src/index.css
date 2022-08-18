@@ -1,0 +1,26 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* VARIABLES */
+
+  --game-board-size-sm: 18rem;
+  --square-size-sm: 6rem;
+
+  --game-board-size-md: 24rem;
+  --square-size-md: 8rem;
+
+  --game-board-size-lg: 30rem;
+  --square-size-lg: 10rem;
+
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

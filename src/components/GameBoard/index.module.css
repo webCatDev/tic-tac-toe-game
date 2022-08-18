@@ -1,0 +1,6 @@
+.gameBoard {
+    display: grid;
+    width: var(--game-board-size-sm) ;
+    height: var(--game-board-size-sm);
+    grid-template-columns: repeat(3, auto);
+}

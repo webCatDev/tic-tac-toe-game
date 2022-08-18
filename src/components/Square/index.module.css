@@ -1,0 +1,24 @@
+.square {
+    width: var(--square-size-sm);
+    height: var(--square-size-sm);
+    border: 1px solid rgb(36, 34, 34);
+}
+
+.square:nth-child(1),
+.square:nth-child(2),
+.square:nth-child(3) {
+    border-top: none; 
+}
+
+.square:nth-child(3n + 1) {
+    border-left: none;
+}
+.square:nth-child(3n + 3) {
+    border-right: none;
+}
+
+.square:nth-child(7),
+.square:nth-child(8),
+.square:nth-child(9) {
+    border-bottom: none; 
+}
