@@ -29,13 +29,11 @@ const gameReducer = (state, action) => {
           {
             name: action.payload.player1Name,
             tag: action.payload.player1Tag,
-            selectedCharImage: action.payload.player1Image,
             winCount: state.players[0].winCount,
           },
           {
             name: action.payload.player2Name,
             tag: action.payload.player1Tag === "X" ? "O" : "X",
-            selectedCharImage: action.payload.player2Image,
             winCount: state.players[1].winCount,
           },
         ],
@@ -64,8 +62,13 @@ const gameReducer = (state, action) => {
             newSquares[a] === newSquares[b] &&
             newSquares[b] === newSquares[c]
           ) {
-            console.log('playerxxx', state.players[state.currentPlayer === "X" ? 0 : 1]);
-            state.players[state.players.findIndex(p => p.tag === state.currentPlayer)].winCount++;
+            console.log(
+              "playerxxx",
+              state.players[state.currentPlayer === "X" ? 0 : 1]
+            );
+            state.players[
+              state.players.findIndex((p) => p.tag === state.currentPlayer)
+            ].winCount++;
             return state.currentPlayer;
           }
         }
@@ -85,15 +88,15 @@ const gameReducer = (state, action) => {
         currentPlayer: state.currentPlayer === "X" ? "O" : "X",
         players: [...state.players],
         winner,
-          };
-      case 'handleRestart':
-          return {
-            ...state,
-            didGameStart: true,
-            currentPlayer: "X",
-              squares: Array(9).fill(null),
-            winner: ''
-          };
+      };
+    case "handleRestart":
+      return {
+        ...state,
+        didGameStart: true,
+        currentPlayer: "X",
+        squares: Array(9).fill(null),
+        winner: "",
+      };
     default:
       return state;
   }

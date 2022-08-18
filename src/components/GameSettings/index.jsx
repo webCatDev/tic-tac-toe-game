@@ -10,18 +10,8 @@ const GameSettings = ({ dispatcher }) => {
 
   const [playerInfo, setPlayerInfo] = useState(initialPlayerInfo);
   const [muted, setMuted] = useState(false);
-    const [isClassic, setIsClassic] = useState(true);
+    
 
-    const player2Image = playerInfo["player-1-tag"] === "X" ? "O" : "X";
-    const [characters, setCharacters] = useState([
-      playerInfo["player-1-tag"],
-      player2Image
-    ]);
-
-    useEffect(() => {
-        const player2Image = playerInfo["player-1-tag"] === "X" ? "O" : "X";
-        setCharacters([playerInfo["player-1-tag"], player2Image]);
-    }, [playerInfo['player-1-tag']])
 
   const handleInputChange = ({ target: { name, value } }) => {
     sessionStorage.setItem(name, value);
@@ -108,12 +98,6 @@ const GameSettings = ({ dispatcher }) => {
             </label>
           </div>
         </div>
-      </div>
-      <div className={classes.gameMode}>
-        <p>Game Mode</p>
-        <button onClick={toggleState.bind(null, setIsClassic)}>
-          {isClassic ? "Classic" : "Custom"}
-        </button>
       </div>
       <div className={classes.gameSound}>
         <p>Game Sound</p>
