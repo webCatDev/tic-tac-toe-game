@@ -11,12 +11,12 @@ function App() {
 
   return (
     <>
-      {!state.didGameStart && <GameSettings />}
+      {!state.didGameStart && <GameSettings dispatcher={dispatch} />}
 
       {state.didGameStart && (
         <GameBoard>
           {state.squares.map((value, i) => (
-            <Square key={`s${i}`} index={i} />
+            <Square dispatcher={dispatch} key={`s${i}`} index={i} value={value} />
           ))}
         </GameBoard>
       )}

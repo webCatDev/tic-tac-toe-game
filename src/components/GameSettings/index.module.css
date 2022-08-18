@@ -1,0 +1,70 @@
+.gameSettings {
+  font-size: var(--font-size-sm);
+  padding: 2rem 0;
+}
+
+.gameSettings button {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-black-light);
+  padding: 1rem 2rem;
+}
+
+.gameSettings button:hover,
+.labelActive {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.gameSettings,
+.playerNames,
+.playerTags,
+.gameMode,
+.gameSound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.playerTags {
+  margin-top: 1rem;
+  gap: 2rem;
+}
+
+.gameMode {
+     margin-top: 1rem;
+}
+
+.gameSound button {
+    display: block;
+}
+
+.gameSound button svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.playerTags label {
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+
+.playerTags input {
+  display: none;
+}
+
+.playerNames input {
+  text-align: center;
+  padding: 1rem 2rem;
+  font-size: inherit;
+}
+
+.playerNames input::placeholder {
+  text-align: center;
+}
+
+.gameStart button {
+    background-color: var(--color-green) ;
+    color: var(--color-white);
+    font-weight: bold;
+}
