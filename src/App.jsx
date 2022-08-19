@@ -7,9 +7,6 @@ import ScoreBoard from "./components/ScoreBoard";
 import Square from "./components/Square";
 
 import gameReducer, { initialState } from "./reducers/gameReducer";
-import gameMusic from './music/game-music.wav'
-
-
 
 function App() {
   const [state, dispatch] = useReducer(gameReducer, initialState);
