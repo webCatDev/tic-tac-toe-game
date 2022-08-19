@@ -1,40 +1,43 @@
 import { useEffect, useState } from "react";
+import useAudio from "../../hooks/useAudio";
 import classes from "./index.module.css";
 
+import musicURL from "../../music/game-music.wav";
+
 const GameSettings = ({ dispatcher }) => {
-    const initialPlayerInfo = {
+  const initialPlayerInfo = {
     "player-1-name": sessionStorage.getItem("player-1-name") || "",
     "player-2-name": sessionStorage.getItem("player-2-name") || "",
     "player-1-tag": sessionStorage.getItem("player-1-tag") || "X",
   };
 
   const [playerInfo, setPlayerInfo] = useState(initialPlayerInfo);
-    const [muted, setMuted] = useState(false);
-    const [isAgainstComputer, setIsAgainstComputer] = useState(true)
-    
-
+  const [isAgainstComputer, setIsAgainstComputer] = useState(true);
+  const [muted, toggleMusicPlayState] = useAudio(musicURL);
 
   const handleInputChange = ({ target: { name, value } }) => {
     sessionStorage.setItem(name, value);
-      setPlayerInfo((prevInfo) => ({ ...prevInfo, [name]: value }));
+    setPlayerInfo((prevInfo) => ({ ...prevInfo, [name]: value }));
   };
 
   const toggleState = (setter) => {
     setter((prevState) => !prevState);
   };
 
-    const handleClickGameStart = () => {
-      
+  const handleClickGameStart = () => {
     dispatcher({
       type: "handleStart",
       payload: {
         player1Name: playerInfo["player-1-name"],
-        player2Name: isAgainstComputer ? 'Computer' :  playerInfo["player-2-name"],
-          player1Tag: playerInfo["player-1-tag"],
-        isAgainstComputer
+        player2Name: isAgainstComputer
+          ? "Computer"
+          : playerInfo["player-2-name"],
+        player1Tag: playerInfo["player-1-tag"],
+        isAgainstComputer,
       },
     });
   };
+
 
   return (
     <section className={classes.gameSettings}>
@@ -46,7 +49,9 @@ const GameSettings = ({ dispatcher }) => {
 
       <div className="players-info">
         <div className={classes.playerNames}>
-          <label htmlFor="player-1-name">{isAgainstComputer ? 'Player Name' : 'Player 1'}</label>
+          <label htmlFor="player-1-name">
+            {isAgainstComputer ? "Player Name" : "Player 1"}
+          </label>
           <input
             id="player-1-name"
             name="player-1-name"
@@ -55,7 +60,7 @@ const GameSettings = ({ dispatcher }) => {
             value={playerInfo["player-1-name"]}
             onChange={handleInputChange}
           />
-          {!isAgainstComputer &&
+          {!isAgainstComputer && (
             <>
               <label htmlFor="player-2-name">Player 2</label>
               <input
@@ -67,10 +72,10 @@ const GameSettings = ({ dispatcher }) => {
                 onChange={handleInputChange}
               />
             </>
-          }
+          )}
         </div>
         <div className={classes.playerTags}>
-          <p>{isAgainstComputer ? 'Player Tag' :'Tag of Player 1'}</p>
+          <p>{isAgainstComputer ? "Player Tag" : "Tag of Player 1"}</p>
           <div>
             <input
               id="player-1-x"
@@ -111,11 +116,8 @@ const GameSettings = ({ dispatcher }) => {
       </div>
       <div className={classes.gameSound}>
         <p>Game Sound</p>
-        <button
-          aria-label="change game sound"
-          onClick={toggleState.bind(null, setMuted)}
-        >
-          {muted && (
+        <button aria-label="change game sound" onClick={toggleMusicPlayState}>
+          {!muted && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-5 w-5"
@@ -129,7 +131,7 @@ const GameSettings = ({ dispatcher }) => {
               />
             </svg>
           )}
-          {!muted && (
+          {muted && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"

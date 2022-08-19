@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useReducer } from "react";
 
 import GameBoard from "./components/GameBoard";
 import GameSettings from "./components/GameSettings";
@@ -7,6 +7,8 @@ import ScoreBoard from "./components/ScoreBoard";
 import Square from "./components/Square";
 
 import gameReducer, { initialState } from "./reducers/gameReducer";
+import gameMusic from './music/game-music.wav'
+
 
 
 function App() {
@@ -19,7 +21,9 @@ function App() {
     <>
       {!state.didGameStart && <GameSettings dispatcher={dispatch} />}
 
-      
+      <audio loop autoPlay>
+        <source src={gameMusic} type="audio/wav"></source>
+      </audio>
       {!state.winner && state.didGameStart && (
         <>
           <ScoreBoard players={state.players} currentPlayer={state.currentPlayer} />
