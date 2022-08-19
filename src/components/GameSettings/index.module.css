@@ -1,7 +1,20 @@
+.gameSettings,
+.playerNames,
+.playerTags,
+.gameMode,
+.gameSound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
 .gameSettings {
   font-size: var(--font-size-sm);
   padding: 2rem 0;
+  gap: 2rem;
 }
+
 
 .gameSettings button {
   background-color: var(--color-white);
@@ -15,25 +28,21 @@
   color: var(--color-white);
 }
 
-.gameSettings,
-.playerNames,
-.playerTags,
-.gameMode,
-.gameSound {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
+
+
 
 .playerTags {
   margin-top: 1rem;
   gap: 2rem;
 }
 
-.gameMode {
-     margin-top: 1rem;
+.langAndOpponent {
+    display: flex;
 }
+.langAndOpponent button {
+   flex:1;
+}
+
 
 .gameSound button {
     display: block;

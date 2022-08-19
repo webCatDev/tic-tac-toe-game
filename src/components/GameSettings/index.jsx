@@ -2,7 +2,7 @@ import {  useState } from "react";
 import IconForGameMusicOff from "../Icons/IconForGameMusicOff";
 import IconForGameMusicOn from "../Icons/IconForGameMusicOn";
 import classes from "./index.module.css";
-
+import Languages from "../../Languages";
 
 const GameSettings = ({ dispatcher, gameState }) => {
   const initialPlayerInfo = {
@@ -12,7 +12,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
   };
 
   const [playerInfo, setPlayerInfo] = useState(initialPlayerInfo);
-  const [isAgainstComputer, setIsAgainstComputer] = useState(true);
+    const [isAgainstComputer, setIsAgainstComputer] = useState(true);
 
   const handleInputChange = ({ target: { name, value } }) => {
     sessionStorage.setItem(name, value);
@@ -29,7 +29,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
       payload: {
         player1Name: playerInfo["player-1-name"],
         player2Name: isAgainstComputer
-          ? "Computer"
+          ? Languages[gameState.lang].gameSettings.computerName
           : playerInfo["player-2-name"],
         player1Tag: playerInfo["player-1-tag"],
         isAgainstComputer,
@@ -40,33 +40,40 @@ const GameSettings = ({ dispatcher, gameState }) => {
 
   return (
     <section className={classes.gameSettings}>
-      <div className="play-with">
-        <button onClick={toggleState.bind(null, setIsAgainstComputer)}>
-          {isAgainstComputer ? "Against Computer" : "Against Friend"}
-        </button>
+      <div className={classes.langAndOpponent}>
+         
+            <button onClick={() => dispatcher({type: 'handleToggleLanguage'})}>
+              {gameState.lang === "Türkçe" ? "Türkçe" : "English"}
+            </button>
+         
+          
+            <button onClick={toggleState.bind(null, setIsAgainstComputer)}>
+              {isAgainstComputer ? Languages[gameState.lang].gameSettings.against[0] : Languages[gameState.lang].gameSettings.against[1]}
+            </button>
+         
       </div>
 
       <div className="players-info">
         <div className={classes.playerNames}>
           <label htmlFor="player-1-name">
-            {isAgainstComputer ? "Player Name" : "Player 1"}
+            {isAgainstComputer ? Languages[gameState.lang].gameSettings.player1Label[0] : Languages[gameState.lang].gameSettings.player1Label[1]}
           </label>
           <input
             id="player-1-name"
             name="player-1-name"
             type="text"
-            placeholder="name"
+            placeholder={Languages[gameState.lang].gameSettings.playerNamePlaceholder}
             value={playerInfo["player-1-name"]}
             onChange={handleInputChange}
           />
           {!isAgainstComputer && (
             <>
-              <label htmlFor="player-2-name">Player 2</label>
+              <label htmlFor="player-2-name">{Languages[gameState.lang].gameSettings.player2Label}</label>
               <input
                 id="player-2-name"
                 name="player-2-name"
                 type="text"
-                placeholder="name"
+                placeholder={Languages[gameState.lang].gameSettings.playerNamePlaceholder}
                 value={playerInfo["player-2-name"]}
                 onChange={handleInputChange}
               />
@@ -74,7 +81,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
           )}
         </div>
         <div className={classes.playerTags}>
-          <p>{isAgainstComputer ? "Player Tag" : "Tag of Player 1"}</p>
+          <p>{isAgainstComputer ? Languages[gameState.lang].gameSettings.playerTagLabel[0] : Languages[gameState.lang].gameSettings.playerTagLabel[1]}</p>
           <div>
             <input
               id="player-1-x"
@@ -113,9 +120,9 @@ const GameSettings = ({ dispatcher, gameState }) => {
         </div>
       </div>
       <div className={classes.gameSound}>
-        <p>Music</p>
+        <p>{Languages[gameState.lang].gameSettings.musicLabel}</p>
         <button
-          aria-label="change game sound"
+          aria-label={gameState.isMusicOn ?  Languages[gameState.lang].gameSettings.toggleMusicAriaLabel[0]: Languages[gameState.lang].gameSettings.toggleMusicAriaLabel}
           onClick={() => dispatcher({type: "handleToggleMusic"})}
         >
           {!gameState.isMusicOn && <IconForGameMusicOff />}
@@ -124,8 +131,8 @@ const GameSettings = ({ dispatcher, gameState }) => {
       </div>
 
       <div className={classes.gameStart}>
-        <button aria-label="start game" onClick={handleClickGameStart}>
-          Start Game
+        <button aria-label={Languages[gameState.lang].gameSettings.startGameText} onClick={handleClickGameStart}>
+          {Languages[gameState.lang].gameSettings.startGameText}
         </button>
       </div>
     </section>

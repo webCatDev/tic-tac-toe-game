@@ -7,6 +7,7 @@ const clickSound = new Audio(clickSoundURL)
 const gameMusic = new Audio(gameMusicURL)
 
 export const initialState = {
+    lang: 'English',
   didGameStart: false,
   isAgainstComputer: true,
   currentPlayer: "X",
@@ -110,12 +111,14 @@ const gameReducer = (state, action) => {
       newSquares[nullSquareIndexes[ Math.floor(Math.random() * nullSquareIndexes.length)]] =
         state.currentPlayer;
 
+          const compWinCheck = checkForWinner(newSquares, state)
+          compWinCheck === state.players[1].tag && loseSound.play()
       return {
         ...state,
         squares: newSquares,
         currentPlayer: state.currentPlayer === "X" ? "O" : "X",
         players: [...state.players],
-        winner: checkForWinner(newSquares, state),
+        winner: compWinCheck,
       };
 
     case "handleRestart":
@@ -136,10 +139,14 @@ const gameReducer = (state, action) => {
               isMusicOn: !state.isMusicOn
           }
       case 'handleToggleSounds':
-          console.log('soundsss', state.isSoundsOn)
           return {
               ...state,
               isSoundsOn: !state.isSoundsOn
+          }
+      case 'handleToggleLanguage':
+          return {
+              ...state,
+              lang: state.lang === "Türkçe" ? "English" : "Türkçe"
           }
     default:
       return state;
