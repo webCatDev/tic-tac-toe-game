@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useAudio from "../../hooks/useAudio";
 import classes from "./index.module.css";
 
-import musicURL from "../../music/game-music.wav";
+import musicURL from "../../music/game-music.mp3";
 
 const GameSettings = ({ dispatcher }) => {
   const initialPlayerInfo = {

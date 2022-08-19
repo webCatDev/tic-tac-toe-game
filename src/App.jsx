@@ -14,16 +14,9 @@ import gameMusic from './music/game-music.wav'
 function App() {
   const [state, dispatch] = useReducer(gameReducer, initialState);
 
-  
-
-
   return (
     <>
       {!state.didGameStart && <GameSettings dispatcher={dispatch} />}
-
-      <audio loop autoPlay>
-        <source src={gameMusic} type="audio/wav"></source>
-      </audio>
       {!state.winner && state.didGameStart && (
         <>
           <ScoreBoard players={state.players} currentPlayer={state.currentPlayer} />
