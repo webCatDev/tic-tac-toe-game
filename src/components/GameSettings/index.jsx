@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import classes from "./index.module.css";
 
 const GameSettings = ({ dispatcher }) => {
-  const initialPlayerInfo = {
+    const initialPlayerInfo = {
     "player-1-name": sessionStorage.getItem("player-1-name") || "",
     "player-2-name": sessionStorage.getItem("player-2-name") || "",
     "player-1-tag": sessionStorage.getItem("player-1-tag") || "X",
   };
 
   const [playerInfo, setPlayerInfo] = useState(initialPlayerInfo);
-  const [muted, setMuted] = useState(false);
+    const [muted, setMuted] = useState(false);
+    const [isAgainstComputer, setIsAgainstComputer] = useState(true)
     
 
 
@@ -28,17 +29,24 @@ const GameSettings = ({ dispatcher }) => {
       type: "handleStart",
       payload: {
         player1Name: playerInfo["player-1-name"],
-        player2Name: playerInfo["player-2-name"],
-        player1Tag: playerInfo["player-1-tag"],
+        player2Name: isAgainstComputer ? 'Computer' :  playerInfo["player-2-name"],
+          player1Tag: playerInfo["player-1-tag"],
+        isAgainstComputer
       },
     });
   };
 
   return (
     <section className={classes.gameSettings}>
+      <div className="play-with">
+        <button onClick={toggleState.bind(null, setIsAgainstComputer)}>
+          {isAgainstComputer ? "Against Computer" : "Against Friend"}
+        </button>
+      </div>
+
       <div className="players-info">
         <div className={classes.playerNames}>
-          <label htmlFor="player-1-name">Player 1</label>
+          <label htmlFor="player-1-name">{isAgainstComputer ? 'Player Name' : 'Player 1'}</label>
           <input
             id="player-1-name"
             name="player-1-name"
@@ -47,18 +55,22 @@ const GameSettings = ({ dispatcher }) => {
             value={playerInfo["player-1-name"]}
             onChange={handleInputChange}
           />
-          <label htmlFor="player-2-name">Player 2</label>
-          <input
-            id="player-2-name"
-            name="player-2-name"
-            type="text"
-            placeholder="name"
-            value={playerInfo["player-2-name"]}
-            onChange={handleInputChange}
-          />
+          {!isAgainstComputer &&
+            <>
+              <label htmlFor="player-2-name">Player 2</label>
+              <input
+                id="player-2-name"
+                name="player-2-name"
+                type="text"
+                placeholder="name"
+                value={playerInfo["player-2-name"]}
+                onChange={handleInputChange}
+              />
+            </>
+          }
         </div>
         <div className={classes.playerTags}>
-          <p>Tag of Player 1</p>
+          <p>{isAgainstComputer ? 'Player Tag' :'Tag of Player 1'}</p>
           <div>
             <input
               id="player-1-x"
@@ -71,7 +83,7 @@ const GameSettings = ({ dispatcher }) => {
             <label
               htmlFor="player-1-x"
               className={
-                playerInfo["player-1-tag"] === "X" ? classes.labelActive : ''
+                playerInfo["player-1-tag"] === "X" ? classes.labelActive : ""
               }
             >
               X
@@ -89,7 +101,7 @@ const GameSettings = ({ dispatcher }) => {
             <label
               htmlFor="player-1-o"
               className={
-                playerInfo["player-1-tag"] === "O" ? classes.labelActive : ''
+                playerInfo["player-1-tag"] === "O" ? classes.labelActive : ""
               }
             >
               O

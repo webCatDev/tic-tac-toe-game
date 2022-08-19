@@ -8,8 +8,12 @@ import Square from "./components/Square";
 
 import gameReducer, { initialState } from "./reducers/gameReducer";
 
+
 function App() {
   const [state, dispatch] = useReducer(gameReducer, initialState);
+
+  
+
 
   return (
     <>
@@ -19,7 +23,7 @@ function App() {
       {!state.winner && state.didGameStart && (
         <>
           <ScoreBoard players={state.players} currentPlayer={state.currentPlayer} />
-        <GameBoard>
+        <GameBoard gameState={state} dispatcher={dispatch}>
           {state.squares.map((value, i) => (
             <Square dispatcher={dispatch} key={`s${i}`} index={i} value={value} />
           ))}
