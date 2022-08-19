@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import useAudio from "../../hooks/useAudio";
 import classes from "./index.module.css";
 
@@ -76,7 +76,7 @@ const GameSettings = ({ dispatcher }) => {
         </div>
         <div className={classes.playerTags}>
           <p>{isAgainstComputer ? "Player Tag" : "Tag of Player 1"}</p>
-          <div>
+        <div>
             <input
               id="player-1-x"
               type="radio"
@@ -93,8 +93,7 @@ const GameSettings = ({ dispatcher }) => {
             >
               X
             </label>
-          </div>
-          <div>
+       
             <input
               id="player-1-o"
               type="radio"
@@ -111,7 +110,7 @@ const GameSettings = ({ dispatcher }) => {
             >
               O
             </label>
-          </div>
+         </div>
         </div>
       </div>
       <div className={classes.gameSound}>

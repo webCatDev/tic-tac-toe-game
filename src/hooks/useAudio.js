@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const useAudio = (url) => {
   const [song] = useState(
@@ -9,15 +9,9 @@ const useAudio = (url) => {
   const toggle = () => setPlay(!play);
 
   useEffect(() => {
-    play ? song.play() : song.pause();
+      play ? (song.loop = true,  song.play()) : song.pause();
   }, [play]);
 
-  useEffect(() => {
-    song.addEventListener("ended", () => setPlay(true));
-    return () => {
-      song.removeEventListener("ended", () => setPlay(true));
-    };
-  }, []);
 
   return [play, toggle];
 };

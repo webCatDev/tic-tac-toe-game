@@ -1,5 +1,9 @@
+import winSoundURL from '../music/win-sound.mp3'
+import clickSoundURL from '../music/click-sound.mp3'
+const winSound = new Audio(winSoundURL)
+const clickSound = new Audio(clickSoundURL)
+
 export const initialState = {
-  // todo: change it to false
   didGameStart: false,
   isAgainstComputer: true,
   currentPlayer: "X",
@@ -35,6 +39,7 @@ const checkForWinner = (squares, state) => {
   for (const [a, b, c] of winPatterns) {
     if (!squares[a] || !squares[b] || !squares[c]) {
     } else if (squares[a] === squares[b] && squares[b] === squares[c]) {
+    winSound.play()
       state.players[
         state.players.findIndex((p) => p.tag === state.currentPlayer)
       ].winCount++;
@@ -78,6 +83,7 @@ const gameReducer = (state, action) => {
       )
         return state;
 
+      clickSound.play()
       const squares = [...state.squares];
       squares[action.payload.index] = state.currentPlayer;
 
@@ -92,6 +98,7 @@ const gameReducer = (state, action) => {
       };
 
       case "handleComputerMove":
+          clickSound.play()
           const newSquares = [...state.squares];
           const nullSquareIndexes = state.squares.reduce((acc,cur, i) => cur === null ? [...acc, i] : acc, []);
           console.log(state.squares, nullSquareIndexes)
