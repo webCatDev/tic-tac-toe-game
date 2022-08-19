@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import IconForGameMusicOff from "../Icons/IconForGameMusicOff";
 import IconForGameMusicOn from "../Icons/IconForGameMusicOn";
 import classes from "./index.module.css";
@@ -12,7 +12,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
   };
 
   const [playerInfo, setPlayerInfo] = useState(initialPlayerInfo);
-    const [isAgainstComputer, setIsAgainstComputer] = useState(true);
+  const [isAgainstComputer, setIsAgainstComputer] = useState(true);
 
   const handleInputChange = ({ target: { name, value } }) => {
     sessionStorage.setItem(name, value);
@@ -36,7 +36,6 @@ const GameSettings = ({ dispatcher, gameState }) => {
       },
     });
   };
-
 
   return (
     <section className={classes.gameSettings}>
@@ -79,6 +78,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
               : Languages[gameState.lang].gameSettings.player1Label[1]}
           </label>
           <input
+            required
             id="player-1-name"
             name="player-1-name"
             type="text"
@@ -99,6 +99,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
                 {Languages[gameState.lang].gameSettings.player2Label}
               </label>
               <input
+                required
                 id="player-2-name"
                 name="player-2-name"
                 type="text"
