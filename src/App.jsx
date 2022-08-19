@@ -38,7 +38,7 @@ function App() {
       )}
 
       {state.winner && (
-        <RestartDialog dispatcher={dispatch} winner={state.winner} />
+        <RestartDialog dispatcher={dispatch} gameState={state} />
       )}
     </>
   );
