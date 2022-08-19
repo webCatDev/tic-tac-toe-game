@@ -1,13 +1,18 @@
 import winSoundURL from '../music/win-sound.mp3'
 import clickSoundURL from '../music/click-sound.mp3'
+import gameMusicURL from '../music/game-music.mp3'
+
 const winSound = new Audio(winSoundURL)
 const clickSound = new Audio(clickSoundURL)
+const gameMusic = new Audio(gameMusicURL)
 
 export const initialState = {
   didGameStart: false,
   isAgainstComputer: true,
   currentPlayer: "X",
-  squares: Array(9).fill(null),
+    squares: Array(9).fill(null),
+    isMusicOn: false,
+  isSoundsOn: true,
   players: [
     {
       name: "",
@@ -39,7 +44,7 @@ const checkForWinner = (squares, state) => {
   for (const [a, b, c] of winPatterns) {
     if (!squares[a] || !squares[b] || !squares[c]) {
     } else if (squares[a] === squares[b] && squares[b] === squares[c]) {
-    winSound.play()
+    state.isSoundsOn && winSound.play();
       state.players[
         state.players.findIndex((p) => p.tag === state.currentPlayer)
       ].winCount++;
@@ -57,7 +62,7 @@ const checkForWinner = (squares, state) => {
 const gameReducer = (state, action) => {
   switch (action.type) {
     case "handleStart":
-      console.log(action.payload);
+      state.isMusicOn ? (gameMusic.loop = true, gameMusic.play()) : gameMusic.pause()
       return {
         ...initialState,
         players: [
@@ -83,7 +88,7 @@ const gameReducer = (state, action) => {
       )
         return state;
 
-      clickSound.play()
+      state.isSoundsOn && clickSound.play();
       const squares = [...state.squares];
       squares[action.payload.index] = state.currentPlayer;
 
@@ -98,7 +103,7 @@ const gameReducer = (state, action) => {
       };
 
       case "handleComputerMove":
-          clickSound.play()
+          state.isSoundsOn && clickSound.play()
           const newSquares = [...state.squares];
           const nullSquareIndexes = state.squares.reduce((acc,cur, i) => cur === null ? [...acc, i] : acc, []);
           console.log(state.squares, nullSquareIndexes)
@@ -120,7 +125,22 @@ const gameReducer = (state, action) => {
         currentPlayer: "X",
         squares: Array(9).fill(null),
         winner: "",
-      };
+          };
+      
+      case 'handleToggleMusic':
+          !state.isMusicOn
+            ? ((gameMusic.loop = true), gameMusic.play())
+            : gameMusic.pause();
+          return {
+              ...state,
+              isMusicOn: !state.isMusicOn
+          }
+      case 'handleToggleSounds':
+          console.log('soundsss', state.isSoundsOn)
+          return {
+              ...state,
+              isSoundsOn: !state.isSoundsOn
+          }
     default:
       return state;
   }

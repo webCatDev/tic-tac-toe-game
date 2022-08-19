@@ -4,6 +4,20 @@
     border: 1px solid var(--color-black-light);
 }
 
+@media only screen  and (min-width: 48em) {
+    .square {
+        width: var(--square-size-md);
+    height: var(--square-size-md);
+    }
+}
+
+@media only screen  and (min-width: 90em) {
+    .square {
+        width: var(--square-size-lg);
+    height: var(--square-size-lg);
+    }
+}
+
 .square svg {
     width: 80%;
     height: 80%;
