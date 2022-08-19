@@ -4,10 +4,10 @@ import GameBoard from "./components/GameBoard";
 import GameSettings from "./components/GameSettings";
 import RestartDialog from "./components/RestartDialog";
 import ScoreBoard from "./components/ScoreBoard";
-import SoundSettings from "./components/SoundSettings";
 import Square from "./components/Square";
 
 import gameReducer, { initialState } from "./reducers/gameReducer";
+import GameBoardSettings from "./components/GameBoardSettings";
 
 function App() {
   const [state, dispatch] = useReducer(gameReducer, initialState);
@@ -19,7 +19,7 @@ function App() {
       )}
       {!state.winner && state.didGameStart && (
         <>
-          <SoundSettings gameState={state} dispatcher={dispatch} />
+          <GameBoardSettings gameState={state} dispatcher={dispatch} />
           <ScoreBoard
             players={state.players}
             currentPlayer={state.currentPlayer}

@@ -41,47 +41,82 @@ const GameSettings = ({ dispatcher, gameState }) => {
   return (
     <section className={classes.gameSettings}>
       <div className={classes.langAndOpponent}>
-         
-            <button onClick={() => dispatcher({type: 'handleToggleLanguage'})}>
-              {gameState.lang === "Türkçe" ? "Türkçe" : "English"}
-            </button>
-         
-          
-            <button onClick={toggleState.bind(null, setIsAgainstComputer)}>
-              {isAgainstComputer ? Languages[gameState.lang].gameSettings.against[0] : Languages[gameState.lang].gameSettings.against[1]}
-            </button>
-         
+        <button
+          aria-label={
+            gameState.lang === "Türkçe"
+              ? "oyun dilini ingilizce yap"
+              : "change game language to English"
+          }
+          onClick={() => dispatcher({ type: "handleToggleLanguage" })}
+        >
+          {gameState.lang === "Türkçe" ? "Türkçe" : "English"}
+        </button>
+
+        <button
+          aria-label={
+            isAgainstComputer
+              ? Languages[gameState.lang].gameSettings
+                  .toggleAgainstComputerText[0]
+              : Languages[gameState.lang].gameSettings
+                  .toggleAgainstComputerText[1]
+          }
+          aria-expanded={!isAgainstComputer}
+          aria-controls="sectPlayer2"
+          id="againstCompBtn"
+          onClick={toggleState.bind(null, setIsAgainstComputer)}
+        >
+          {isAgainstComputer
+            ? Languages[gameState.lang].gameSettings.against[0]
+            : Languages[gameState.lang].gameSettings.against[1]}
+        </button>
       </div>
 
       <div className="players-info">
         <div className={classes.playerNames}>
           <label htmlFor="player-1-name">
-            {isAgainstComputer ? Languages[gameState.lang].gameSettings.player1Label[0] : Languages[gameState.lang].gameSettings.player1Label[1]}
+            {isAgainstComputer
+              ? Languages[gameState.lang].gameSettings.player1Label[0]
+              : Languages[gameState.lang].gameSettings.player1Label[1]}
           </label>
           <input
             id="player-1-name"
             name="player-1-name"
             type="text"
-            placeholder={Languages[gameState.lang].gameSettings.playerNamePlaceholder}
+            placeholder={
+              Languages[gameState.lang].gameSettings.playerNamePlaceholder
+            }
             value={playerInfo["player-1-name"]}
             onChange={handleInputChange}
           />
           {!isAgainstComputer && (
-            <>
-              <label htmlFor="player-2-name">{Languages[gameState.lang].gameSettings.player2Label}</label>
+            <div
+              className={classes.player2Name}
+              role="region"
+              id="sectPlayer2"
+              aria-labelledby="againstCompBtn"
+            >
+              <label htmlFor="player-2-name">
+                {Languages[gameState.lang].gameSettings.player2Label}
+              </label>
               <input
                 id="player-2-name"
                 name="player-2-name"
                 type="text"
-                placeholder={Languages[gameState.lang].gameSettings.playerNamePlaceholder}
+                placeholder={
+                  Languages[gameState.lang].gameSettings.playerNamePlaceholder
+                }
                 value={playerInfo["player-2-name"]}
                 onChange={handleInputChange}
               />
-            </>
+            </div>
           )}
         </div>
         <div className={classes.playerTags}>
-          <p>{isAgainstComputer ? Languages[gameState.lang].gameSettings.playerTagLabel[0] : Languages[gameState.lang].gameSettings.playerTagLabel[1]}</p>
+          <p>
+            {isAgainstComputer
+              ? Languages[gameState.lang].gameSettings.playerTagLabel[0]
+              : Languages[gameState.lang].gameSettings.playerTagLabel[1]}
+          </p>
           <div>
             <input
               id="player-1-x"
@@ -122,8 +157,12 @@ const GameSettings = ({ dispatcher, gameState }) => {
       <div className={classes.gameSound}>
         <p>{Languages[gameState.lang].gameSettings.musicLabel}</p>
         <button
-          aria-label={gameState.isMusicOn ?  Languages[gameState.lang].gameSettings.toggleMusicAriaLabel[0]: Languages[gameState.lang].gameSettings.toggleMusicAriaLabel}
-          onClick={() => dispatcher({type: "handleToggleMusic"})}
+          aria-label={
+            gameState.isMusicOn
+              ? Languages[gameState.lang].gameSettings.toggleMusicAriaLabel[0]
+              : Languages[gameState.lang].gameSettings.toggleMusicAriaLabel
+          }
+          onClick={() => dispatcher({ type: "handleToggleMusic" })}
         >
           {!gameState.isMusicOn && <IconForGameMusicOff />}
           {gameState.isMusicOn && <IconForGameMusicOn />}
@@ -131,7 +170,10 @@ const GameSettings = ({ dispatcher, gameState }) => {
       </div>
 
       <div className={classes.gameStart}>
-        <button aria-label={Languages[gameState.lang].gameSettings.startGameText} onClick={handleClickGameStart}>
+        <button
+          aria-label={Languages[gameState.lang].gameSettings.startGameText}
+          onClick={handleClickGameStart}
+        >
           {Languages[gameState.lang].gameSettings.startGameText}
         </button>
       </div>

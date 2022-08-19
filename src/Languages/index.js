@@ -1,6 +1,10 @@
 export default {
   English: {
     gameSettings: {
+      toggleAgainstComputerText: [
+        "play with your friend",
+        "play against computer",
+      ],
       computerName: "Computer",
       against: ["Against Computer", "Against Friend"],
       player1Label: ["Player Name", "Player 1"],
@@ -15,9 +19,17 @@ export default {
       winnerText: ["WINNER", "DRAW"],
       restartGameText: "Restart Game",
     },
+    gameBoardSettings: {
+      toggleSoundAriaLabel: ["mute sound effects", "unmute sound effects"],
+      toggleMusicAriaLabel: ["pause game music", "play game music"],
+    },
   },
   Türkçe: {
     gameSettings: {
+      toggleAgainstComputerText: [
+        "arkadaşınla oyna",
+        "bilgisayara karşı",
+      ],
       computerName: "Bilgisayar",
       against: ["Bilgisayara Karşı", "Arkadaşınla Oyna"],
       player1Label: ["Oyuncu İsmi", "Oyuncu 1"],
@@ -31,6 +43,10 @@ export default {
     restartDialog: {
       winnerText: ["Kazanan", "Berabere"],
       restartGameText: "Yeniden Oyna",
+    },
+    gameBoardSettings: {
+      toggleSoundAriaLabel: ["ses efektlerini sustur", "ses efektlerini aç"],
+      toggleMusicAriaLabel: ["oyun müziğini durdur", "oyun müziğini oynat"],
     },
   },
 };

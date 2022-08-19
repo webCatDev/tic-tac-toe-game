@@ -2,7 +2,8 @@
 .playerNames,
 .playerTags,
 .gameMode,
-.gameSound {
+.gameSound,
+.player2Name {
   display: flex;
   flex-direction: column;
   align-items: center;
