@@ -1,6 +1,7 @@
 import Languages from "../../Languages";
 import IconForGameMusicOff from "../Icons/IconForGameMusicOff";
 import IconForGameMusicOn from "../Icons/IconForGameMusicOn";
+import IconForMenu from "../Icons/IconForMenu";
 import IconForSoundsOff from "../Icons/IconForSoundsOff";
 import IconForSoundsOn from "../Icons/IconForSoundsOn";
 import classes from './index.module.css'
@@ -8,7 +9,8 @@ import classes from './index.module.css'
 
 const GameBoardSettings = ({gameState, dispatcher}) => {
     return (
-      <div className={classes.soundSettings}>
+        <div className={classes.soundSettings}>
+            <button aria-label={Languages[gameState.lang].gameBoardSettings.mainMenuText} onClick={()=>dispatcher({type: 'handleMainMenu'})}> <IconForMenu/></button>
         <button
           aria-label={
             gameState.isSoundsOn

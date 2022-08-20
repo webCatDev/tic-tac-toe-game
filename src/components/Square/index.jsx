@@ -11,7 +11,7 @@ const Square = ({ index,dispatcher, value}) => {
 })
     }
     
-    return <button onClick={handleClick} className={classes.square} index={index} value={value}>
+    return <button aria-label={value} onClick={handleClick} className={classes.square} index={index} value={value}>
         {value && (value === 'X' ? <IconForX /> : <IconForO />)}
     </button>;
 };

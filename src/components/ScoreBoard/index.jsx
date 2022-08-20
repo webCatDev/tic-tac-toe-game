@@ -3,7 +3,6 @@ import IconForX from "../Icons/IconForX";
 import classes from "./index.module.css";
 
 const ScoreBoard = ({ currentPlayer, players }) => {
-    console.log(currentPlayer, players)
   const player1Classes = `${classes.player1} ${
     (currentPlayer === "X" && players[0].tag === "X") ||
     (currentPlayer === "O" && players[0].tag === "O")

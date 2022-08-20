@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IconForGameMusicOff from "../Icons/IconForGameMusicOff";
 import IconForGameMusicOn from "../Icons/IconForGameMusicOn";
 import classes from "./index.module.css";
@@ -13,6 +13,17 @@ const GameSettings = ({ dispatcher, gameState }) => {
 
   const [playerInfo, setPlayerInfo] = useState(initialPlayerInfo);
   const [isAgainstComputer, setIsAgainstComputer] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError(null);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
 
   const handleInputChange = ({ target: { name, value } }) => {
     sessionStorage.setItem(name, value);
@@ -24,6 +35,14 @@ const GameSettings = ({ dispatcher, gameState }) => {
   };
 
   const handleClickGameStart = () => {
+    if (
+      !playerInfo["player-1-name"].trim() ||
+      (!isAgainstComputer && !playerInfo["player-2-name"].trim())
+    ) {
+      setError(Languages[gameState.lang].gameSettings.emptyNameError);
+      return;
+    }
+
     dispatcher({
       type: "handleStart",
       payload: {
@@ -178,6 +197,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
           {Languages[gameState.lang].gameSettings.startGameText}
         </button>
       </div>
+      {error && <p>{error}</p>}
     </section>
   );
 };

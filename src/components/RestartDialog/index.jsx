@@ -11,11 +11,31 @@ const RestartDialog = ({  dispatcher, gameState }) => {
     }
 
     return (
-        <div className={classes.restartDialog}>
-            <h1>{gameState.winner==="X" || gameState.winner === 'O' ? Languages[gameState.lang].restartDialog.winnerText[0]: Languages[gameState.lang].restartDialog.winnerText[1]}</h1>
-            {gameState.winner === 'X' ? <IconForX/> : gameState.winner === 'O' ? <IconForO/> : <IconForDraw /> }
-            <button aria-label={Languages[gameState.lang].restartDialog.restartGameText} onClick={handleClick}>{ Languages[gameState.lang].restartDialog.restartGameText}</button>
-        </div>
+      <div className={classes.restartDialog}>
+        <h1>
+          {gameState.winner === "X" || gameState.winner === "O"
+            ? Languages[gameState.lang].restartDialog.winnerText[0]
+            : Languages[gameState.lang].restartDialog.winnerText[1]}
+        </h1>
+        {gameState.winner === "X" ? (
+          <IconForX />
+        ) : gameState.winner === "O" ? (
+          <IconForO />
+        ) : (
+          <IconForDraw />
+        )}
+
+        <button
+          aria-label={Languages[gameState.lang].restartDialog.restartGameText}
+          onClick={handleClick}
+        >
+          {Languages[gameState.lang].restartDialog.restartGameText}
+        </button>
+
+        <button onClick={() => dispatcher({ type: "handleMainMenu" })}>
+          {Languages[gameState.lang].restartDialog.mainMenuText}
+        </button>
+      </div>
     );
 }
 
