@@ -7,6 +7,7 @@
     z-index: 1;
     width: 80%;
     max-width: 30rem;
+    color: var(--color-white);
 }
 
 .scoreList li{
