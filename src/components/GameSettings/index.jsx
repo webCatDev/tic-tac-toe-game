@@ -3,6 +3,10 @@ import IconForGameMusicOff from "../Icons/IconForGameMusicOff";
 import IconForGameMusicOn from "../Icons/IconForGameMusicOn";
 import classes from "./index.module.css";
 import Languages from "../../Languages";
+import { createPortal } from "react-dom";
+import Modal from "../Modal";
+import HighScores from "../HighScores";
+import HowToPlay from "../HowToPlay";
 
 const GameSettings = ({ dispatcher, gameState }) => {
   const initialPlayerInfo = {
@@ -58,6 +62,48 @@ const GameSettings = ({ dispatcher, gameState }) => {
 
   return (
     <section className={classes.gameSettings}>
+      <div className="how-to-play">
+        <button
+          onClick={() =>
+            dispatcher({
+              type: "handleModalStateChange",
+              payload: {
+                modalName: "howToPlay",
+              },
+            })
+          }
+        >
+          How To Play
+        </button>
+        {gameState.modalName === "howToPlay" &&
+          createPortal(
+            <Modal dispatcher={dispatcher}>
+              <HowToPlay/>
+            </Modal>,
+            document.getElementById("modal")
+          )}
+      </div>
+      <div className="high-scores">
+        <button
+          onClick={() =>
+            dispatcher({
+              type: "handleModalStateChange",
+              payload: {
+                modalName: "highScores",
+              },
+            })
+          }
+        >
+          High Scores
+        </button>
+        {gameState.modalName === "highScores" &&
+          createPortal(
+            <Modal dispatcher={dispatcher}>
+              <HighScores scores={gameState.gameRecords} />
+            </Modal>,
+            document.getElementById("modal")
+          )}
+      </div>
       <div className={classes.langAndOpponent}>
         <button
           aria-label={

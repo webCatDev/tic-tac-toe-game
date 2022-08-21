@@ -1,0 +1,15 @@
+.modal {
+    position: fixed;
+   inset: 0;
+    background-image: url('/public/modal-bg.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.closeModalButton {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    
+}
+

@@ -9,6 +9,7 @@ const clickSound = new Audio(clickSoundURL);
 const gameMusic = new Audio(gameMusicURL);
 
 export const initialState = {
+  modalName: "",
   lang: "English",
   didGameStart: false,
   isAgainstComputer: true,
@@ -29,7 +30,7 @@ export const initialState = {
     },
   ],
   winner: "",
-  gameRecords: localStorage.getItem('gameRecords') || {},
+  gameRecords: JSON.parse(localStorage.getItem("gameRecords")) || {},
 };
 
 const checkForWinner = (squares, state) => {
@@ -47,23 +48,25 @@ const checkForWinner = (squares, state) => {
   for (const [a, b, c] of winPatterns) {
     if (!squares[a] || !squares[b] || !squares[c]) {
     } else if (squares[a] === squares[b] && squares[b] === squares[c]) {
-        const winnerName = state.players.find(player => player.tag === state.currentPlayer).name
+      const winnerName = state.players.find(
+        (player) => player.tag === state.currentPlayer
+      ).name;
       if (
         state.isSoundsOn &&
         winnerName !== "Computer" &&
         winnerName !== "Bilgisayar"
       ) {
-          // play win sound
-          winSound.play();
-          
-          // add record to game records
+        // play win sound
+        winSound.play();
+
+        // add record to game records
 
         state.gameRecords[winnerName]
           ? state.gameRecords[winnerName]++
-              : state.gameRecords[winnerName] = 1;     
-          localStorage.setItem('gameRecords', JSON.stringify(state.gameRecords))
+          : (state.gameRecords[winnerName] = 1);
+        localStorage.setItem("gameRecords", JSON.stringify(state.gameRecords));
 
-          console.log(state.gameRecords)
+        console.log(state.gameRecords);
       }
 
       state.players[
@@ -180,6 +183,11 @@ const gameReducer = (state, action) => {
         didGameStart: false,
         currentPlayer: "X",
         squares: Array(9).fill(null),
+      };
+    case "handleModalStateChange":
+      return {
+        ...state,
+        modalName: action.payload.modalName,
       };
     default:
       return state;
