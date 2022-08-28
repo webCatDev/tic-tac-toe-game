@@ -235,6 +235,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
         </button>
       </div>
 
+        {error && <p>{error}</p>}
       <div className={classes.gameStart}>
         <button
           aria-label={Languages[gameState.lang].gameSettings.startGameText}
@@ -243,7 +244,6 @@ const GameSettings = ({ dispatcher, gameState }) => {
           {Languages[gameState.lang].gameSettings.startGameText}
         </button>
       </div>
-      {error && <p>{error}</p>}
     </section>
   );
 };

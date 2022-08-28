@@ -1,3 +1,4 @@
+import IconForClose from '../Icons/IconForClose';
 import classes from './index.module.css'
 const Modal = ({ children, dispatcher }) => {
     return (
@@ -13,7 +14,7 @@ const Modal = ({ children, dispatcher }) => {
               })
             }
           >
-            Close
+            <IconForClose/>
           </button>
        {children}
       </div>

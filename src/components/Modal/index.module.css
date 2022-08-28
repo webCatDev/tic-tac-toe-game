@@ -10,6 +10,20 @@
     position: absolute;
     top: 1rem;
     left: 1rem;
-    
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent;
+    border: none;
+    transition: transform .2s ease-in-out;
+}
+
+.closeModalButton:hover, .closeModalButton:focus {
+    transform: scale(1.1);
+}
+
+.closeModalButton svg {
+    width: 100%;
+    height: 100%;
+    color: white;
 }
 

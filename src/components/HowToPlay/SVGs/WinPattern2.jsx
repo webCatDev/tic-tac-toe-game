@@ -19,7 +19,7 @@ const WinPattern2 = () => {
           width="354"
           height="354"
           stroke="black"
-          stroke-width="6"
+          strokeWidth="6"
         />
         <rect x="363" y="363" width="354" height="354" fill="#F7F3F3" />
         <rect
@@ -28,7 +28,7 @@ const WinPattern2 = () => {
           width="354"
           height="354"
           stroke="black"
-          stroke-width="6"
+          strokeWidth="6"
         />
         <rect x="723" y="723" width="354" height="354" fill="#F7F3F3" />
         <rect
@@ -37,7 +37,7 @@ const WinPattern2 = () => {
           width="354"
           height="354"
           stroke="black"
-          stroke-width="6"
+          strokeWidth="6"
         />
         <rect x="363" y="723" width="354" height="354" fill="#F7F3F3" />
         <rect
@@ -46,7 +46,7 @@ const WinPattern2 = () => {
           width="354"
           height="354"
           stroke="black"
-          stroke-width="6"
+          strokeWidth="6"
         />
         <rect x="723" y="363" width="354" height="354" fill="#F7F3F3" />
         <rect
@@ -55,7 +55,7 @@ const WinPattern2 = () => {
           width="354"
           height="354"
           stroke="black"
-          stroke-width="6"
+          strokeWidth="6"
         />
         <rect x="723" y="3" width="354" height="354" fill="#F7F3F3" />
         <rect
@@ -64,7 +64,7 @@ const WinPattern2 = () => {
           width="354"
           height="354"
           stroke="black"
-          stroke-width="6"
+          strokeWidth="6"
         />
         <rect x="363" y="3" width="354" height="354" fill="#F7F3F3" />
         <rect
@@ -73,7 +73,7 @@ const WinPattern2 = () => {
           width="354"
           height="354"
           stroke="black"
-          stroke-width="6"
+          strokeWidth="6"
         />
         <rect x="3" y="363" width="354" height="354" fill="#D3739C" />
         <path
@@ -86,7 +86,7 @@ const WinPattern2 = () => {
           width="354"
           height="354"
           stroke="black"
-          stroke-width="6"
+          strokeWidth="6"
         />
         <rect x="3" y="723" width="354" height="354" fill="#D3739C" />
         <path
@@ -99,7 +99,7 @@ const WinPattern2 = () => {
           width="354"
           height="354"
           stroke="black"
-          stroke-width="6"
+          strokeWidth="6"
         />
         <path
           d="M532.575 997.425C536.676 1001.53 543.324 1001.53 547.425 997.425L614.246 930.603C618.347 926.503 618.347 919.854 614.246 915.754C610.146 911.653 603.497 911.653 599.397 915.754L540 975.151L480.603 915.754C476.503 911.653 469.854 911.653 465.754 915.754C461.653 919.854 461.653 926.503 465.754 930.603L532.575 997.425ZM529.5 90L529.5 990H550.5L550.5 90H529.5Z"

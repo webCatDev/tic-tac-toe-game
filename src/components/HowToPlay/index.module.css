@@ -6,6 +6,8 @@
   z-index: 1;
   width: 80%;
   max-width: 30rem;
+  text-align: center;
+  font-size: 1.5rem;
 }
 
 .howToPlay,
@@ -22,12 +24,38 @@
   height: 16rem;
 }
 
+.imageBox button{
+  display: block;
+  position: absolute;
+  top: 50%;
+  background-color: transparent;
+  border: none;
+  height: 2rem;
+  width: 3rem;
+}
+
+.arrowLeft {
+  transform: translate(-100%, -50%);
+  left: 0;
+}
+
+.arrowRight {
+  transform: translate(100%, -50%);
+  right: 0;
+}
+
+.imageBox button svg {
+  width: 100%;
+  height: 100%;
+color: white;
+}
+
 .howToPlay p {
   color: var(--color-white);
   max-width: 70ch;
 }
 
-.imageBox svg {
+.imageBox > svg {
   position: absolute;
   width: 100%;
   height: 100%;

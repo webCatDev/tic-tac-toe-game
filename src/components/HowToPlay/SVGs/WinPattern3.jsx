@@ -19,7 +19,7 @@ const winPattern3 = () => {
           width="354"
           height="354"
           stroke="black"
-          stroke-width="6"
+          strokeWidth="6"
         />
         <rect x="3" y="363" width="354" height="354" fill="#F7F3F3" />
         <rect
@@ -28,7 +28,7 @@ const winPattern3 = () => {
           width="354"
           height="354"
           stroke="black"
-          stroke-width="6"
+          strokeWidth="6"
         />
         <rect x="3" y="723" width="354" height="354" fill="#F7F3F3" />
         <rect
@@ -37,7 +37,7 @@ const winPattern3 = () => {
           width="354"
           height="354"
           stroke="black"
-          stroke-width="6"
+          strokeWidth="6"
         />
         <rect x="363" y="363" width="354" height="354" fill="#D3739C" />
         <path
@@ -50,7 +50,7 @@ const winPattern3 = () => {
           width="354"
           height="354"
           stroke="black"
-          stroke-width="6"
+          strokeWidth="6"
         />
         <rect x="363" y="723" width="354" height="354" fill="#F7F3F3" />
         <rect
@@ -59,7 +59,7 @@ const winPattern3 = () => {
           width="354"
           height="354"
           stroke="black"
-          stroke-width="6"
+          strokeWidth="6"
         />
         <rect x="723" y="363" width="354" height="354" fill="#F7F3F3" />
         <rect
@@ -68,7 +68,7 @@ const winPattern3 = () => {
           width="354"
           height="354"
           stroke="black"
-          stroke-width="6"
+          strokeWidth="6"
         />
         <rect x="723" y="3" width="354" height="354" fill="#F7F3F3" />
         <rect
@@ -77,7 +77,7 @@ const winPattern3 = () => {
           width="354"
           height="354"
           stroke="black"
-          stroke-width="6"
+          strokeWidth="6"
         />
         <rect x="723" y="723" width="354" height="354" fill="#D3739C" />
         <path
@@ -90,7 +90,7 @@ const winPattern3 = () => {
           width="354"
           height="354"
           stroke="black"
-          stroke-width="6"
+          strokeWidth="6"
         />
         <rect x="363" y="3" width="354" height="354" fill="#F7F3F3" />
         <rect
@@ -99,7 +99,7 @@ const winPattern3 = () => {
           width="354"
           height="354"
           stroke="black"
-          stroke-width="6"
+          strokeWidth="6"
         />
       </svg>
     );
