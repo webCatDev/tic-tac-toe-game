@@ -78,3 +78,8 @@
     color: var(--color-white);
     font-weight: bold;
 }
+
+.error {
+  font-weight: bold;
+  color: rgb(233, 30, 30);
+}

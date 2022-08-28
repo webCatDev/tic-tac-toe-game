@@ -14,7 +14,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
 // TEXTS DEPENDING ON SELECTED LANGUAGE
   const {
     howToPlayText,
-        highScoresText,
+    highScoresText,
     emptyNameError,
     computerName,
     toggleAgainstComputerText,
@@ -26,6 +26,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
     musicLabel,
     toggleMusicAriaLabel,
     startGameText,
+    duplicateNameError,
   } = Languages[gameState.lang].gameSettings;
 
   const initialPlayerInfo = {
@@ -73,17 +74,25 @@ const GameSettings = ({ dispatcher, gameState }) => {
       return;
     }
 
-    dispatcher({
-      type: "handleStart",
-      payload: {
-        player1Name: playerInfo["player-1-name"],
-        player2Name: isAgainstComputer
-          ? computerName
-          : playerInfo["player-2-name"],
-        player1Tag: playerInfo["player-1-tag"],
-        isAgainstComputer,
-      },
-    });
+    if (
+      playerInfo["player-1-name"].trim().toLocaleLowerCase() ===
+      playerInfo["player-2-name"].trim().toLocaleLowerCase()
+    ) {
+      setError(duplicateNameError)
+      return
+    }
+
+      dispatcher({
+        type: "handleStart",
+        payload: {
+          player1Name: playerInfo["player-1-name"],
+          player2Name: isAgainstComputer
+            ? computerName
+            : playerInfo["player-2-name"],
+          player1Tag: playerInfo["player-1-tag"],
+          isAgainstComputer,
+        },
+      });
   };
 
   return (
@@ -102,7 +111,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
         >
           {howToPlayText}
         </button>
-        {( gameState.modalName === "howToPlay" || hasTransitionedInHTP) &&
+        {(gameState.modalName === "howToPlay" || hasTransitionedInHTP) &&
           createPortal(
             <Modal
               hasTransitionedIn={hasTransitionedInHTP}
@@ -177,6 +186,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
             id="player-1-name"
             name="player-1-name"
             type="text"
+            maxLength={5}
             placeholder={playerNamePlaceholder}
             value={playerInfo["player-1-name"]}
             onChange={handleInputChange}
@@ -194,6 +204,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
                 id="player-2-name"
                 name="player-2-name"
                 type="text"
+                maxLength={5}
                 placeholder={playerNamePlaceholder}
                 value={playerInfo["player-2-name"]}
                 onChange={handleInputChange}
@@ -255,7 +266,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
         </button>
       </div>
 
-      {error && <p>{error}</p>}
+      {error && <p className={classes.error}>{error}</p>}
       <div className={classes.gameStart}>
         <button aria-label={startGameText} onClick={handleClickGameStart}>
           {startGameText}

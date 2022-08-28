@@ -16,7 +16,8 @@ export default {
       musicLabel: "Music",
       toggleMusicAriaLabel: ["play game music", "pause game music"],
       startGameText: "Start Game",
-      emptyNameError: "Player name can't be empty",
+      emptyNameError: "Player name can't be empty!",
+      duplicateNameError: "Names of players can not be same!",
     },
     restartDialog: {
       winnerText: ["WINNER", "DRAW"],
@@ -58,7 +59,8 @@ export default {
       musicLabel: "Müzik",
       toggleMusicAriaLabel: ["oyun müziğini oynat", "oyun müziğini durdur"],
       startGameText: "Oyuna Başla",
-      emptyNameError: "Oyuncu adı boş bırakılamaz.",
+      emptyNameError: "Oyuncu adı boş bırakılamaz!",
+      duplicateNameError: "Oyuncu isimleri aynı olamaz!",
     },
     restartDialog: {
       winnerText: ["Kazanan", "Berabere"],
