@@ -6,8 +6,12 @@ import classes from './index.module.css'
 import IconForLeft from "../Icons/IconForLeft";
 import IconForRight from "../Icons/IconForRight";
 import { useState } from "react";
+import Languages from "../../Languages";
 
-const HowToPlay = () => {
+const HowToPlay = ({ gameState }) => {
+    // TEXTS DEPENDING ON LANGUAGE
+    const {howToPlayTexts} = Languages[gameState.lang].howToPlay
+
     const [currentSlide, setCurrentSlide] = useState(1)
 
     const handleSlideChange = ({ target: { name } }) => {
@@ -19,11 +23,13 @@ const HowToPlay = () => {
     }
 
     return (
-      <div className={classes.howToPlay}>
-        <p>
-          Aim of this game to achive OOO or XXX <br />
-          horizantally, vertically or diagonally
-        </p>
+        <div className={classes.howToPlay}>
+            <div>
+       { howToPlayTexts.map(text => <p key={text}>
+          {text}
+        </p>)}
+
+            </div>
         <div className={classes.imageBox}>
           <button
             className={classes.arrowLeft}

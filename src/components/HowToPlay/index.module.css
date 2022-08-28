@@ -6,9 +6,9 @@
   z-index: 1;
   width: 80%;
   max-width: 30rem;
-  text-align: center;
-  font-size: 1.5rem;
 }
+
+
 
 .howToPlay,
 .imageBox {
@@ -16,6 +16,13 @@
   align-items: center;
   flex-direction: column;
   gap: 1rem;
+}
+
+.howToPlay p {
+  color: var(--color-white);
+  max-width: 70ch;
+  text-align: center;
+  font-size: 1.5rem;
 }
 
 .imageBox {
@@ -50,10 +57,7 @@
 color: white;
 }
 
-.howToPlay p {
-  color: var(--color-white);
-  max-width: 70ch;
-}
+
 
 .imageBox > svg {
   position: absolute;

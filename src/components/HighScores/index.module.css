@@ -20,3 +20,9 @@ justify-content: space-between;
 .scoreList li:not(:last-child) {
     margin-bottom: .5rem;
 }
+
+.scoreList p {
+  max-width: 70ch;
+  text-align: center;
+  font-size: 1.5rem;
+}

@@ -2,7 +2,7 @@ import classes from "./index.module.css";
 import Languages from "../../Languages";
 
 
-const HighScores = ({ scores, gameState }) => {
+const HighScores = ({ gameState }) => {
   const {noScoreTexts} = Languages[gameState.lang].highScores
 const scorers = Object.keys(gameState.gameRecords)
     return (

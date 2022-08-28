@@ -100,7 +100,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
         </button>
         {gameState.modalName === "howToPlay" &&
           createPortal(
-            <Modal dispatcher={dispatcher}>
+            <Modal gameState={gameState} dispatcher={dispatcher}>
               <HowToPlay gameState={gameState} />
             </Modal>,
             document.getElementById("modal")
@@ -122,7 +122,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
         </button>
         {gameState.modalName === "highScores" &&
           createPortal(
-            <Modal dispatcher={dispatcher}>
+            <Modal gameState={gameState} dispatcher={dispatcher}>
               <HighScores gameState={gameState} />
             </Modal>,
             document.getElementById("modal")
