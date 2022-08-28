@@ -80,6 +80,7 @@
 }
 
 .error {
+  text-align: center;
   font-weight: bold;
   color: rgb(233, 30, 30);
 }
