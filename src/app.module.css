@@ -1,0 +1,20 @@
+.gameContainer {
+    transform: translateX(-1rem);
+    opacity: 0;
+    transition: all .5s ease;
+}
+
+.gameContainer.inGC.visible {
+opacity: 1;
+transform: translateX(0);
+}
+
+.gameSettingsContainer {
+    opacity: 0;
+    transition: all .5s ease;
+}
+
+.gameSettingsContainer.inGS.visible {
+opacity: 1;
+}
+
