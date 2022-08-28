@@ -2,9 +2,7 @@
     width: var(--square-size-sm);
     height: var(--square-size-sm);
     border: 1px solid var(--color-black-light);
-}
-.square:hover {
-    background-color: var(--color-square-bg);
+    background-color: var(--color-white);
 }
 
 
@@ -12,7 +10,11 @@
 @media only screen  and (min-width: 48em) {
     .square {
         width: var(--square-size-md);
-    height: var(--square-size-md);
+        height: var(--square-size-md);
+    }
+    
+    .square:hover {
+        background-color: var(--color-square-bg);
     }
 }
 
