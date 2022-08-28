@@ -1,6 +1,8 @@
 export default {
   English: {
     gameSettings: {
+      howToPlayText: "How To Play",
+      highScoresText: "High Scores",
       toggleAgainstComputerText: [
         "play with your friend",
         "play against computer",
@@ -26,9 +28,14 @@ export default {
       toggleMusicAriaLabel: ["pause game music", "play game music"],
       mainMenuText: "Main Menu",
     },
+    highScores: {
+      noScoreTexts: ["You haven't played any game yet.", "Let's go back to main menu and start the game!"],
+    },
   },
   Türkçe: {
     gameSettings: {
+      howToPlayText: "Nasıl Oynanır",
+      highScoresText: "Yüksek Skorlar",
       toggleAgainstComputerText: ["arkadaşınla oyna", "bilgisayara karşı"],
       computerName: "Bilgisayar",
       against: ["Bilgisayara Karşı", "Arkadaşınla Oyna"],
@@ -50,6 +57,9 @@ export default {
       toggleSoundAriaLabel: ["ses efektlerini sustur", "ses efektlerini aç"],
       toggleMusicAriaLabel: ["oyun müziğini durdur", "oyun müziğini oynat"],
       mainMenuText: "Ana Menü",
+    },
+    highScores: {
+      noScoreTexts: ["Daha oyunu hiç oynamadın." ,"Ana menüye dönüp ve oyunu başlatmaya ne dersin?"],
     },
   },
 };

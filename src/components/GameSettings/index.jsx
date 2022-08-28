@@ -8,7 +8,25 @@ import Modal from "../Modal";
 import HighScores from "../HighScores";
 import HowToPlay from "../HowToPlay";
 
+
 const GameSettings = ({ dispatcher, gameState }) => {
+// TEXTS DEPENDING ON SELECTED LANGUAGE
+  const {
+    howToPlayText,
+        highScoresText,
+    emptyNameError,
+    computerName,
+    toggleAgainstComputerText,
+    against,
+    player1Label,
+    playerNamePlaceholder,
+    player2Label,
+    playerTagLabel,
+    musicLabel,
+    toggleMusicAriaLabel,
+    startGameText,
+  } = Languages[gameState.lang].gameSettings;
+
   const initialPlayerInfo = {
     "player-1-name": sessionStorage.getItem("player-1-name") || "",
     "player-2-name": sessionStorage.getItem("player-2-name") || "",
@@ -19,6 +37,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
   const [isAgainstComputer, setIsAgainstComputer] = useState(true);
   const [error, setError] = useState(null);
 
+  // REMOVE ERRORS AFTER SOMETIME
   useEffect(() => {
     if (error) {
       const timer = setTimeout(() => {
@@ -29,21 +48,24 @@ const GameSettings = ({ dispatcher, gameState }) => {
     }
   }, [error]);
 
+  // SET PLAYER INFO DEPENDING ON NAME AND VALUE
   const handleInputChange = ({ target: { name, value } }) => {
     sessionStorage.setItem(name, value);
     setPlayerInfo((prevInfo) => ({ ...prevInfo, [name]: value }));
   };
 
+  // TOGGLE BOOLEAN STATES
   const toggleState = (setter) => {
     setter((prevState) => !prevState);
   };
 
+  // SHOW GAME BOARD AND START THE GAME
   const handleClickGameStart = () => {
     if (
       !playerInfo["player-1-name"].trim() ||
       (!isAgainstComputer && !playerInfo["player-2-name"].trim())
     ) {
-      setError(Languages[gameState.lang].gameSettings.emptyNameError);
+      setError(emptyNameError);
       return;
     }
 
@@ -52,7 +74,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
       payload: {
         player1Name: playerInfo["player-1-name"],
         player2Name: isAgainstComputer
-          ? Languages[gameState.lang].gameSettings.computerName
+          ? computerName
           : playerInfo["player-2-name"],
         player1Tag: playerInfo["player-1-tag"],
         isAgainstComputer,
@@ -64,6 +86,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
     <section className={classes.gameSettings}>
       <div className="how-to-play">
         <button
+          aria-label={howToPlayText}
           onClick={() =>
             dispatcher({
               type: "handleModalStateChange",
@@ -73,18 +96,19 @@ const GameSettings = ({ dispatcher, gameState }) => {
             })
           }
         >
-          How To Play
+          {howToPlayText}
         </button>
         {gameState.modalName === "howToPlay" &&
           createPortal(
             <Modal dispatcher={dispatcher}>
-              <HowToPlay/>
+              <HowToPlay gameState={gameState} />
             </Modal>,
             document.getElementById("modal")
           )}
       </div>
       <div className="high-scores">
         <button
+          aria-label={highScoresText}
           onClick={() =>
             dispatcher({
               type: "handleModalStateChange",
@@ -94,12 +118,12 @@ const GameSettings = ({ dispatcher, gameState }) => {
             })
           }
         >
-          High Scores
+          {highScoresText}
         </button>
         {gameState.modalName === "highScores" &&
           createPortal(
             <Modal dispatcher={dispatcher}>
-              <HighScores scores={gameState.gameRecords} />
+              <HighScores gameState={gameState} />
             </Modal>,
             document.getElementById("modal")
           )}
@@ -119,37 +143,29 @@ const GameSettings = ({ dispatcher, gameState }) => {
         <button
           aria-label={
             isAgainstComputer
-              ? Languages[gameState.lang].gameSettings
-                  .toggleAgainstComputerText[0]
-              : Languages[gameState.lang].gameSettings
-                  .toggleAgainstComputerText[1]
+              ? toggleAgainstComputerText[0]
+              : toggleAgainstComputerText[1]
           }
           aria-expanded={!isAgainstComputer}
           aria-controls="sectPlayer2"
           id="againstCompBtn"
           onClick={toggleState.bind(null, setIsAgainstComputer)}
         >
-          {isAgainstComputer
-            ? Languages[gameState.lang].gameSettings.against[0]
-            : Languages[gameState.lang].gameSettings.against[1]}
+          {isAgainstComputer ? against[0] : against[1]}
         </button>
       </div>
 
       <div className="players-info">
         <div className={classes.playerNames}>
           <label htmlFor="player-1-name">
-            {isAgainstComputer
-              ? Languages[gameState.lang].gameSettings.player1Label[0]
-              : Languages[gameState.lang].gameSettings.player1Label[1]}
+            {isAgainstComputer ? player1Label[0] : player1Label[1]}
           </label>
           <input
             required
             id="player-1-name"
             name="player-1-name"
             type="text"
-            placeholder={
-              Languages[gameState.lang].gameSettings.playerNamePlaceholder
-            }
+            placeholder={playerNamePlaceholder}
             value={playerInfo["player-1-name"]}
             onChange={handleInputChange}
           />
@@ -160,17 +176,13 @@ const GameSettings = ({ dispatcher, gameState }) => {
               id="sectPlayer2"
               aria-labelledby="againstCompBtn"
             >
-              <label htmlFor="player-2-name">
-                {Languages[gameState.lang].gameSettings.player2Label}
-              </label>
+              <label htmlFor="player-2-name">{player2Label}</label>
               <input
                 required
                 id="player-2-name"
                 name="player-2-name"
                 type="text"
-                placeholder={
-                  Languages[gameState.lang].gameSettings.playerNamePlaceholder
-                }
+                placeholder={playerNamePlaceholder}
                 value={playerInfo["player-2-name"]}
                 onChange={handleInputChange}
               />
@@ -178,11 +190,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
           )}
         </div>
         <div className={classes.playerTags}>
-          <p>
-            {isAgainstComputer
-              ? Languages[gameState.lang].gameSettings.playerTagLabel[0]
-              : Languages[gameState.lang].gameSettings.playerTagLabel[1]}
-          </p>
+          <p>{isAgainstComputer ? playerTagLabel[0] : playerTagLabel[1]}</p>
           <div>
             <input
               id="player-1-x"
@@ -221,12 +229,12 @@ const GameSettings = ({ dispatcher, gameState }) => {
         </div>
       </div>
       <div className={classes.gameSound}>
-        <p>{Languages[gameState.lang].gameSettings.musicLabel}</p>
+        <p>{musicLabel}</p>
         <button
           aria-label={
             gameState.isMusicOn
-              ? Languages[gameState.lang].gameSettings.toggleMusicAriaLabel[0]
-              : Languages[gameState.lang].gameSettings.toggleMusicAriaLabel
+              ? toggleMusicAriaLabel[0]
+              : toggleMusicAriaLabel[1]
           }
           onClick={() => dispatcher({ type: "handleToggleMusic" })}
         >
@@ -235,13 +243,10 @@ const GameSettings = ({ dispatcher, gameState }) => {
         </button>
       </div>
 
-        {error && <p>{error}</p>}
+      {error && <p>{error}</p>}
       <div className={classes.gameStart}>
-        <button
-          aria-label={Languages[gameState.lang].gameSettings.startGameText}
-          onClick={handleClickGameStart}
-        >
-          {Languages[gameState.lang].gameSettings.startGameText}
+        <button aria-label={startGameText} onClick={handleClickGameStart}>
+          {startGameText}
         </button>
       </div>
     </section>
