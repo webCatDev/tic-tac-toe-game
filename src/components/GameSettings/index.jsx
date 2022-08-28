@@ -7,6 +7,7 @@ import { createPortal } from "react-dom";
 import Modal from "../Modal";
 import HighScores from "../HighScores";
 import HowToPlay from "../HowToPlay";
+import useMountTransition from '../../hooks/useMountTransition'
 
 
 const GameSettings = ({ dispatcher, gameState }) => {
@@ -36,6 +37,9 @@ const GameSettings = ({ dispatcher, gameState }) => {
   const [playerInfo, setPlayerInfo] = useState(initialPlayerInfo);
   const [isAgainstComputer, setIsAgainstComputer] = useState(true);
   const [error, setError] = useState(null);
+
+  const hasTransitionedInHTP = useMountTransition(gameState.modalName === 'howToPlay', 500)
+  const hasTransitionedInHS = useMountTransition(gameState.modalName === 'highScores', 500)
 
   // REMOVE ERRORS AFTER SOMETIME
   useEffect(() => {
@@ -98,9 +102,13 @@ const GameSettings = ({ dispatcher, gameState }) => {
         >
           {howToPlayText}
         </button>
-        {gameState.modalName === "howToPlay" &&
+        {( gameState.modalName === "howToPlay" || hasTransitionedInHTP) &&
           createPortal(
-            <Modal gameState={gameState} dispatcher={dispatcher}>
+            <Modal
+              hasTransitionedIn={hasTransitionedInHTP}
+              gameState={gameState}
+              dispatcher={dispatcher}
+            >
               <HowToPlay gameState={gameState} />
             </Modal>,
             document.getElementById("modal")
@@ -120,9 +128,13 @@ const GameSettings = ({ dispatcher, gameState }) => {
         >
           {highScoresText}
         </button>
-        {gameState.modalName === "highScores" &&
+        {(gameState.modalName === "highScores" || hasTransitionedInHS) &&
           createPortal(
-            <Modal gameState={gameState} dispatcher={dispatcher}>
+            <Modal
+              hasTransitionedIn={hasTransitionedInHS}
+              gameState={gameState}
+              dispatcher={dispatcher}
+            >
               <HighScores gameState={gameState} />
             </Modal>,
             document.getElementById("modal")

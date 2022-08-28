@@ -3,6 +3,7 @@ import sleep from "../../utils/sleep";
 import classes from "./index.module.css";
 
 const GameBoard = ({ children, gameState, dispatcher }) => {
+   
       useEffect(() => {
         if (
           gameState.isAgainstComputer &&

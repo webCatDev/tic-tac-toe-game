@@ -20,13 +20,11 @@ function App() {
       {!state.winner && state.didGameStart && (
         <>
           <GameBoardSettings gameState={state} dispatcher={dispatch} />
-          <ScoreBoard
-            players={state.players}
-            currentPlayer={state.currentPlayer}
-          />
+          <ScoreBoard gameState={state} />
           <GameBoard gameState={state} dispatcher={dispatch}>
             {state.squares.map((value, i) => (
               <Square
+                gameState={state}
                 dispatcher={dispatch}
                 key={`s${i}`}
                 index={i}
