@@ -7,12 +7,13 @@ import { createPortal } from "react-dom";
 import Modal from "../Modal";
 import HighScores from "../HighScores";
 import HowToPlay from "../HowToPlay";
-import useMountTransition from '../../hooks/useMountTransition'
-
+import useMountTransition from "../../hooks/useMountTransition";
 
 const GameSettings = ({ dispatcher, gameState }) => {
-// TEXTS DEPENDING ON SELECTED LANGUAGE
+  // TEXTS DEPENDING ON SELECTED LANGUAGE
   const {
+    difficultyTexts,
+    difficultyLabel,
     howToPlayText,
     highScoresText,
     emptyNameError,
@@ -38,9 +39,18 @@ const GameSettings = ({ dispatcher, gameState }) => {
   const [playerInfo, setPlayerInfo] = useState(initialPlayerInfo);
   const [isAgainstComputer, setIsAgainstComputer] = useState(true);
   const [error, setError] = useState(null);
+  const [difficultyIdx, setDifficultyIdx] = useState(
+    JSON.parse(sessionStorage.getItem("difficultyIdx")) || 0
+  );
 
-  const hasTransitionedInHTP = useMountTransition(gameState.modalName === 'howToPlay', 500)
-  const hasTransitionedInHS = useMountTransition(gameState.modalName === 'highScores', 500)
+  const hasTransitionedInHTP = useMountTransition(
+    gameState.modalName === "howToPlay",
+    500
+  );
+  const hasTransitionedInHS = useMountTransition(
+    gameState.modalName === "highScores",
+    500
+  );
 
   // REMOVE ERRORS AFTER SOMETIME
   useEffect(() => {
@@ -78,21 +88,28 @@ const GameSettings = ({ dispatcher, gameState }) => {
       playerInfo["player-1-name"].trim().toLocaleLowerCase() ===
       playerInfo["player-2-name"].trim().toLocaleLowerCase()
     ) {
-      setError(duplicateNameError)
-      return
+      setError(duplicateNameError);
+      return;
     }
 
-      dispatcher({
-        type: "handleStart",
-        payload: {
-          player1Name: playerInfo["player-1-name"],
-          player2Name: isAgainstComputer
-            ? computerName
-            : playerInfo["player-2-name"],
-          player1Tag: playerInfo["player-1-tag"],
-          isAgainstComputer,
-        },
-      });
+    dispatcher({
+      type: "handleStart",
+      payload: {
+        player1Name: playerInfo["player-1-name"],
+        player2Name: isAgainstComputer
+          ? computerName
+          : playerInfo["player-2-name"],
+        player1Tag: playerInfo["player-1-tag"],
+        isAgainstComputer,
+      },
+    });
+  };
+
+  const handleClickDifficulty = () => {
+    setDifficultyIdx((prevIdx) => (prevIdx === 2 ? 0 : prevIdx + 1));
+    const idx = difficultyIdx === 2 ? 0 : difficultyIdx + 1;
+    sessionStorage.setItem("difficultyIdx", JSON.stringify(idx));
+    dispatcher({ type: "handleDifficultyChange", payload: { idx} });
   };
 
   return (
@@ -263,6 +280,16 @@ const GameSettings = ({ dispatcher, gameState }) => {
         >
           {!gameState.isMusicOn && <IconForGameMusicOff />}
           {gameState.isMusicOn && <IconForGameMusicOn />}
+        </button>
+      </div>
+
+      <div className={classes.difficulty}>
+        <p>{difficultyLabel}</p>
+        <button
+          aria-label={difficultyTexts[difficultyIdx]}
+          onClick={handleClickDifficulty}
+        >
+          {difficultyTexts[difficultyIdx]}
         </button>
       </div>
 

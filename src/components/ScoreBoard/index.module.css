@@ -23,6 +23,10 @@
   padding: 0.5rem;
 }
 
+.iconBox:hover svg {
+  animation: rotate 900ms infinite ease;
+}
+
 .iconBox,
 .playerName,
 .winCount {
@@ -39,4 +43,14 @@
 
 .activePlayer .playerName {
   border-bottom: 0.5rem solid var(--color-green);
+}
+
+@keyframes rotate {
+from {
+  transform: rotate(0);
+}
+to {
+  transform: rotate(360deg);
+
+}
 }

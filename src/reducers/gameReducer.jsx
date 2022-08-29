@@ -11,6 +11,10 @@ const gameMusic = new Audio(gameMusicURL);
 export const initialState = {
   modalName: "",
   lang: "English",
+  difficulty: {
+    level: ["EASY", "NORMAL", "HARD"],
+    idx: JSON.parse(sessionStorage.getItem("difficultyIdx")) || 0,
+  },
   didGameStart: false,
   isAgainstComputer: true,
   currentPlayer: "X",
@@ -33,24 +37,25 @@ export const initialState = {
   gameRecords: JSON.parse(localStorage.getItem("gameRecords")) || {},
 };
 
-const checkForWinner = (squares, state) => {
-  const winPatterns = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
+const winPatterns = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];
 
+const checkForWinner = (squares, state) => {
   for (const [a, b, c] of winPatterns) {
     if (!squares[a] || !squares[b] || !squares[c]) {
     } else if (squares[a] === squares[b] && squares[b] === squares[c]) {
       const winnerName = state.players.find(
         (player) => player.tag === state.currentPlayer
       ).name;
+
       if (
         state.isSoundsOn &&
         winnerName !== "Computer" &&
@@ -60,13 +65,10 @@ const checkForWinner = (squares, state) => {
         winSound.play();
 
         // add record to game records
-
         state.gameRecords[winnerName]
           ? state.gameRecords[winnerName]++
           : (state.gameRecords[winnerName] = 1);
         localStorage.setItem("gameRecords", JSON.stringify(state.gameRecords));
-
-        console.log(state.gameRecords);
       }
 
       state.players[
@@ -129,15 +131,130 @@ const gameReducer = (state, action) => {
       };
 
     case "handleComputerMove":
+ 
       state.isSoundsOn && clickSound.play();
       const newSquares = [...state.squares];
       const nullSquareIndexes = state.squares.reduce(
         (acc, cur, i) => (cur === null ? [...acc, i] : acc),
         []
       );
-      newSquares[
-        nullSquareIndexes[Math.floor(Math.random() * nullSquareIndexes.length)]
-      ] = state.currentPlayer;
+
+
+      switch (state.difficulty.level[state.difficulty.idx]) {
+        case "EASY":
+          newSquares[
+            nullSquareIndexes[
+              Math.floor(Math.random() * nullSquareIndexes.length)
+            ]
+          ] = state.currentPlayer;
+          break;
+        case "NORMAL":
+          const randomNumber = Math.floor(Math.random() * 2);
+          if (randomNumber === 0) {
+            newSquares[
+              nullSquareIndexes[
+                Math.floor(Math.random() * nullSquareIndexes.length)
+              ]
+            ] = state.currentPlayer;
+          }
+
+          if (randomNumber === 1) {
+            const { squares } = state;
+            let compDidMove = false;
+            for (const [a, b, c] of winPatterns) {
+              if (
+                squares[a] &&
+                squares[b] &&
+                squares[a] === squares[b] &&
+                !squares[c]
+              ) {
+                newSquares[c] = state.currentPlayer;
+                compDidMove = true;
+                break;
+              }
+              if (
+                squares[a] &&
+                squares[c] &&
+                squares[a] === squares[c] &&
+                !squares[b]
+              ) {
+                newSquares[b] = state.currentPlayer;
+                compDidMove = true;
+                break;
+              }
+              if (
+                squares[b] &&
+                squares[c] &&
+                squares[b] === squares[c] &&
+                !squares[a]
+              ) {
+                newSquares[a] = state.currentPlayer;
+                compDidMove = true;
+                break;
+              }
+            }
+
+            if (compDidMove === false) {
+              newSquares[
+                nullSquareIndexes[
+                  Math.floor(Math.random() * nullSquareIndexes.length)
+                ]
+              ] = state.currentPlayer;
+            }
+          }
+          break;
+        case "HARD":
+          const { squares } = state;
+          let compDidMove = false;
+          const playerTag = state.players[0].tag;
+          for (const [a, b, c] of winPatterns) {
+            if (
+              squares[a] &&
+              squares[b] &&
+              squares[a] === squares[b] &&
+              squares[b] === playerTag &&
+              !squares[c]
+            ) {
+              newSquares[c] = state.currentPlayer;
+              compDidMove = true;
+              break;
+            }
+            if (
+              squares[a] &&
+              squares[c] &&
+              squares[a] === squares[c] &&
+              squares[c] === playerTag &&
+              !squares[b]
+            ) {
+              newSquares[b] = state.currentPlayer;
+              compDidMove = true;
+              break;
+            }
+            if (
+              squares[b] &&
+              squares[c] &&
+              squares[b] === squares[c] &&
+              squares[b] === playerTag &&
+              !squares[a]
+            ) {
+              newSquares[a] = state.currentPlayer;
+              compDidMove = true;
+              break;
+            }
+          }
+
+          if (compDidMove === false) {
+            newSquares[
+              nullSquareIndexes[
+                Math.floor(Math.random() * nullSquareIndexes.length)
+              ]
+            ] = state.currentPlayer;
+          }
+
+          break;
+        default:
+          return { ...state };
+      }
 
       const compWinCheck = checkForWinner(newSquares, state);
       compWinCheck === state.players[1].tag && loseSound.play();
@@ -188,6 +305,11 @@ const gameReducer = (state, action) => {
       return {
         ...state,
         modalName: action.payload.modalName,
+      };
+    case "handleDifficultyChange":
+      state.difficulty.idx = action.payload.idx
+      return {
+        ...state,
       };
     default:
       return state;

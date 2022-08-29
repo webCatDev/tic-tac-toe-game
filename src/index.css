@@ -33,6 +33,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: .3rem;
+  font-family: 'Merriweather', serif;
 }
 
 button {

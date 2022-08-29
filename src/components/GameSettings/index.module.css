@@ -3,11 +3,13 @@
 .playerTags,
 .gameMode,
 .gameSound,
-.player2Name {
+.player2Name,
+.difficulty {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  text-align: center;
 }
 
 .gameSettings {
