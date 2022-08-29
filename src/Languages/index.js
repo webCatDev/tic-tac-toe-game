@@ -33,14 +33,12 @@ export default {
     },
     highScores: {
       noScoreTexts: [
-        "You haven't played any game yet.",
-        "Let's go back to main menu and start the game!",
+        "You haven't played any game yet. Let's go back to main menu and start the game!",
       ],
     },
     howToPlay: {
       howToPlayTexts: [
-        "Aim of this game is to achieve OOO or XXX",
-        "horizantally, vertically or diagonally.",
+        "Aim of this game is to achieve OOO or XXX horizantally, vertically or diagonally.",
       ],
     },
     modal: {
@@ -78,14 +76,12 @@ export default {
     },
     highScores: {
       noScoreTexts: [
-        "Daha oyunu hiç oynamadın.",
-        "Ana menüye dönüp ve oyunu başlatmaya ne dersin?",
+        "Daha oyunu hiç oynamadın. Ana menüye dönüp oyunu başlatmaya ne dersin?",
       ],
     },
     howToPlay: {
       howToPlayTexts: [
-        "Bu oyunun amacı XXX ya da OOO'ya",
-        "yatay, dikey ya da çaprazdan olacak şekilde ulaşmak.",
+        "Bu oyunun amacı XXX ya da OOO'ya yatay, dikey ya da çaprazdan olacak şekilde ulaşmak.",
       ],
     },
     modal: {
