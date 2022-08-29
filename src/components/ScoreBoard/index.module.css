@@ -36,7 +36,8 @@
 }
 
 .player1 .playerName,
-.player2 .playerName {
+.player2 .playerName,
+.winCount {
   text-transform: capitalize;
   border-bottom: 0.5rem solid transparent;
 }

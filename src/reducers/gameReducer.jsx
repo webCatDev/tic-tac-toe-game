@@ -207,13 +207,49 @@ const gameReducer = (state, action) => {
           const { squares } = state;
           let compDidMove = false;
           const playerTag = state.players[0].tag;
+          const compTag = state.players[1].tag;
           for (const [a, b, c] of winPatterns) {
+              if (
+              squares[a] &&
+              squares[b] &&
+              squares[a] === squares[b] &&
+              squares[b] === compTag &&
+              squares[c] === null
+            ) {
+              newSquares[c] = state.currentPlayer;
+              compDidMove = true;
+              break;
+            }
+            if (
+              squares[a] &&
+              squares[c] &&
+              squares[a] === squares[c] &&
+              squares[c] === compTag &&
+              squares[b]=== null
+            ) {
+              newSquares[b] = state.currentPlayer;
+              compDidMove = true;
+              break;
+            }
+            if (
+              squares[b] &&
+              squares[c] &&
+              squares[b] === squares[c] &&
+              squares[b] === compTag &&
+              squares[a]=== null
+            ) {
+              newSquares[a] = state.currentPlayer;
+              compDidMove = true;
+              break;
+            }
+
+
             if (
               squares[a] &&
               squares[b] &&
               squares[a] === squares[b] &&
               squares[b] === playerTag &&
-              !squares[c]
+              squares[c]=== null
             ) {
               newSquares[c] = state.currentPlayer;
               compDidMove = true;
@@ -224,7 +260,7 @@ const gameReducer = (state, action) => {
               squares[c] &&
               squares[a] === squares[c] &&
               squares[c] === playerTag &&
-              !squares[b]
+              squares[b] === null
             ) {
               newSquares[b] = state.currentPlayer;
               compDidMove = true;
@@ -235,7 +271,7 @@ const gameReducer = (state, action) => {
               squares[c] &&
               squares[b] === squares[c] &&
               squares[b] === playerTag &&
-              !squares[a]
+              squares[a] === null
             ) {
               newSquares[a] = state.currentPlayer;
               compDidMove = true;
