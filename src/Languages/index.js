@@ -87,9 +87,9 @@ export default {
         "Bu oyunun amacı XXX ya da OOO'ya",
         "yatay, dikey ya da çaprazdan olacak şekilde ulaşmak.",
       ],
-      modal: {
-        closeModalText: "Ana menüye geri dön",
-      },
+    },
+    modal: {
+      closeModalText: "Ana menüye geri dön",
     },
   },
 };
