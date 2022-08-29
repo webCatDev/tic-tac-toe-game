@@ -114,85 +114,6 @@ const GameSettings = ({ dispatcher, gameState }) => {
 
   return (
     <section className={classes.gameSettings}>
-      <div className="how-to-play">
-        <button
-          aria-label={howToPlayText}
-          onClick={() =>
-            dispatcher({
-              type: "handleModalStateChange",
-              payload: {
-                modalName: "howToPlay",
-              },
-            })
-          }
-        >
-          {howToPlayText}
-        </button>
-        {(gameState.modalName === "howToPlay" || hasTransitionedInHTP) &&
-          createPortal(
-            <Modal
-              hasTransitionedIn={hasTransitionedInHTP}
-              gameState={gameState}
-              dispatcher={dispatcher}
-            >
-              <HowToPlay gameState={gameState} />
-            </Modal>,
-            document.getElementById("modal")
-          )}
-      </div>
-      <div className="high-scores">
-        <button
-          aria-label={highScoresText}
-          onClick={() =>
-            dispatcher({
-              type: "handleModalStateChange",
-              payload: {
-                modalName: "highScores",
-              },
-            })
-          }
-        >
-          {highScoresText}
-        </button>
-        {(gameState.modalName === "highScores" || hasTransitionedInHS) &&
-          createPortal(
-            <Modal
-              hasTransitionedIn={hasTransitionedInHS}
-              gameState={gameState}
-              dispatcher={dispatcher}
-            >
-              <HighScores gameState={gameState} />
-            </Modal>,
-            document.getElementById("modal")
-          )}
-      </div>
-      <div className={classes.langAndOpponent}>
-        <button
-          aria-label={
-            gameState.lang === "Türkçe"
-              ? "oyun dilini ingilizce yap"
-              : "change game language to English"
-          }
-          onClick={() => dispatcher({ type: "handleToggleLanguage" })}
-        >
-          {gameState.lang === "Türkçe" ? "Türkçe" : "English"}
-        </button>
-
-        <button
-          aria-label={
-            isAgainstComputer
-              ? toggleAgainstComputerText[0]
-              : toggleAgainstComputerText[1]
-          }
-          aria-expanded={!isAgainstComputer}
-          aria-controls="sectPlayer2"
-          id="againstCompBtn"
-          onClick={toggleState.bind(null, setIsAgainstComputer)}
-        >
-          {isAgainstComputer ? against[0] : against[1]}
-        </button>
-      </div>
-
       <div className="players-info">
         <div className={classes.playerNames}>
           <label htmlFor="player-1-name">
@@ -204,6 +125,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
             name="player-1-name"
             type="text"
             maxLength={5}
+            autoFocus
             placeholder={playerNamePlaceholder}
             value={playerInfo["player-1-name"]}
             onChange={handleInputChange}
@@ -268,9 +190,89 @@ const GameSettings = ({ dispatcher, gameState }) => {
           </div>
         </div>
       </div>
-      <div className={classes.gameSound}>
-        <p>{musicLabel}</p>
+
+      
+      <div className={classes.flexRow}>
         <button
+          aria-label={
+            gameState.lang === "Türkçe"
+              ? "oyun dilini ingilizce yap"
+              : "change game language to English"
+          }
+          onClick={() => dispatcher({ type: "handleToggleLanguage" })}
+        >
+          {gameState.lang === "Türkçe" ? "Türkçe" : "English"}
+        </button>
+
+        <button
+          aria-label={
+            isAgainstComputer
+              ? toggleAgainstComputerText[0]
+              : toggleAgainstComputerText[1]
+          }
+          aria-expanded={!isAgainstComputer}
+          aria-controls="sectPlayer2"
+          id="againstCompBtn"
+          onClick={toggleState.bind(null, setIsAgainstComputer)}
+        >
+          {isAgainstComputer ? against[0] : against[1]}
+        </button>
+      </div>
+
+      <div className={classes.flexRow}>
+        <button
+          aria-label={howToPlayText}
+          onClick={() =>
+            dispatcher({
+              type: "handleModalStateChange",
+              payload: {
+                modalName: "howToPlay",
+              },
+            })
+          }
+        >
+          {howToPlayText}
+        </button>
+        {(gameState.modalName === "howToPlay" || hasTransitionedInHTP) &&
+          createPortal(
+            <Modal
+              hasTransitionedIn={hasTransitionedInHTP}
+              gameState={gameState}
+              dispatcher={dispatcher}
+            >
+              <HowToPlay gameState={gameState} />
+            </Modal>,
+            document.getElementById("modal")
+          )}
+        <button
+          aria-label={highScoresText}
+          onClick={() =>
+            dispatcher({
+              type: "handleModalStateChange",
+              payload: {
+                modalName: "highScores",
+              },
+            })
+          }
+        >
+          {highScoresText}
+        </button>
+        {(gameState.modalName === "highScores" || hasTransitionedInHS) &&
+          createPortal(
+            <Modal
+              hasTransitionedIn={hasTransitionedInHS}
+              gameState={gameState}
+              dispatcher={dispatcher}
+            >
+              <HighScores gameState={gameState} />
+            </Modal>,
+            document.getElementById("modal")
+          )}
+      </div>
+
+      <div className={classes.flexRow}>
+        <button
+          title={musicLabel}
           aria-label={
             gameState.isMusicOn
               ? toggleMusicAriaLabel[0]
@@ -281,11 +283,8 @@ const GameSettings = ({ dispatcher, gameState }) => {
           {!gameState.isMusicOn && <IconForGameMusicOff />}
           {gameState.isMusicOn && <IconForGameMusicOn />}
         </button>
-      </div>
-
-      <div className={classes.difficulty}>
-        <p>{difficultyLabel}</p>
         <button
+          title={difficultyLabel}
           aria-label={difficultyTexts[difficultyIdx]}
           onClick={handleClickDifficulty}
         >
