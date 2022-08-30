@@ -43,6 +43,6 @@
     to bottom left, rgba(240, 236, 230, 0.596), rgba(228, 209, 173, 0.61)); */
   border-radius: 10rem;
   stroke: wheat;
-  box-shadow: 0 0 16rem 8rem wheat,
+  box-shadow: 0 0 16rem 8rem rgba(245, 222, 179, 0.541),
     inset 0 0 80rem 4rem rgba(226, 214, 193, 0.623);
 }
