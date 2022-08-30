@@ -1,10 +1,26 @@
 .scoreBoard {
+    margin: 0 auto;
+     width: var(--game-board-size-sm);
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
 }
+
+@media only screen and (min-width: 48em) {
+  .scoreBoard {
+    width: var(--game-board-size-md);
+
+  }
+}
+
+@media only screen and (min-width: 90em) {
+  .scoreBoard {
+    width: var(--game-board-size-lg);
+  }
+}
+
 
 .player1,
 .player2 {

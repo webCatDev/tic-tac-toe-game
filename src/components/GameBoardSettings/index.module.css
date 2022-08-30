@@ -1,4 +1,6 @@
 .soundSettings {
+      margin: 0 auto;
+     width: var(--game-board-size-sm);
     display: flex;
     justify-content: flex-end;
     margin-bottom: 1rem;
@@ -6,6 +8,20 @@
     background-color: rgb(29, 28, 28);
     padding: .5rem;
     border-radius: .5rem;
+}
+
+
+@media only screen and (min-width: 48em) {
+  .soundSettings {
+    width: var(--game-board-size-md);
+
+  }
+}
+
+@media only screen and (min-width: 90em) {
+  .soundSettings {
+    width: var(--game-board-size-lg);
+  }
 }
 
 .soundSettings button {

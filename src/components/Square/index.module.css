@@ -1,50 +1,50 @@
 .square {
-    width: var(--square-size-sm);
-    height: var(--square-size-sm);
-    border: 1px solid var(--color-black-light);
-    background-color: var(--color-white);
+  width: var(--square-size-sm);
+  height: var(--square-size-sm);
+  border: 1px solid var(--color-black-light);
+  background-color: var(--color-white);
 }
 
-
-
-@media only screen  and (min-width: 48em) {
-    .square {
-        width: var(--square-size-md);
-        height: var(--square-size-md);
-    }
-    
-    .square:hover {
-        background-color: var(--color-square-bg);
-    }
+@media only screen and (min-width: 48em) {
+  .square {
+    width: var(--square-size-md);
+    height: var(--square-size-md);
+  }
 }
 
-@media only screen  and (min-width: 90em) {
-    .square {
-        width: var(--square-size-lg);
+@media (hover: hover) and (pointer: fine) {
+  .square:hover {
+    background-color: var(--color-square-bg);
+  }
+}
+
+@media only screen and (min-width: 90em) {
+  .square {
+    width: var(--square-size-lg);
     height: var(--square-size-lg);
-    }
+  }
 }
 
 .square svg {
-    width: 80%;
-    height: 80%;
+  width: 80%;
+  height: 80%;
 }
 
 .square:nth-child(1),
 .square:nth-child(2),
 .square:nth-child(3) {
-    border-top: none; 
+  border-top: none;
 }
 
 .square:nth-child(3n + 1) {
-    border-left: none;
+  border-left: none;
 }
 .square:nth-child(3n + 3) {
-    border-right: none;
+  border-right: none;
 }
 
 .square:nth-child(7),
 .square:nth-child(8),
 .square:nth-child(9) {
-    border-bottom: none; 
+  border-bottom: none;
 }

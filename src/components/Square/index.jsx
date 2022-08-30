@@ -6,19 +6,20 @@ const Square = ({ index,gameState, dispatcher, value }) => {
     const handleHover = (event) => {
         const button = event.target.closest('button')
 
-          !button.innerHTML ? document
-        .querySelector("html")
-        .style.setProperty(
-          "--color-square-bg",
-          gameState.currentPlayer === "X"
-            ? "#fc9f95"
-            : gameState.isAgainstComputer
-            ? ""
-            : "#7177a0"
-        ) : document
-        .querySelector("html")
-        .style.setProperty(
-          "--color-square-bg", '')
+          !button.innerHTML
+            ? document
+                .querySelector("html")
+                .style.setProperty(
+                  "--color-square-bg",
+                  gameState.currentPlayer === "X"
+                    ? "#fc9f95"
+                    : gameState.isAgainstComputer
+                    ? null
+                    : "#7177a0"
+                )
+            : document
+                .querySelector("html")
+                .style.setProperty("--color-square-bg", null);
     };
 
     const handleClick = () => {

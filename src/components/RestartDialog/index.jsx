@@ -11,7 +11,7 @@ const RestartDialog = ({  dispatcher, gameState }) => {
     }
 
     return (
-      <div className={classes.restartDialog}>
+      <div className={`${classes.restartDialog} ${gameState.winner === "X" || gameState.winner === "O" && classes.winner}`}>
         <h1>
           {gameState.winner === "X" || gameState.winner === "O"
             ? Languages[gameState.lang].restartDialog.winnerText[0]
@@ -26,6 +26,7 @@ const RestartDialog = ({  dispatcher, gameState }) => {
         )}
 
         <button
+          className={classes.restartButton}
           aria-label={Languages[gameState.lang].restartDialog.restartGameText}
           onClick={handleClick}
         >

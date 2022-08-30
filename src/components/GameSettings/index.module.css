@@ -11,6 +11,7 @@
 
 .gameSettings {
   font-size: var(--font-size-sm);
+  font-weight: 900;
   padding: 2rem 0;
   gap: 2rem;
 }
@@ -20,6 +21,9 @@
   background-color: var(--color-white);
   border: 1px solid var(--color-black-light);
   padding: 1rem 2rem;
+  font-size: inherit;
+  font-weight: inherit;
+  color:rgb(30, 33, 34);
 }
 
 .gameSettings button:hover,
@@ -28,8 +32,13 @@
   color: var(--color-white);
 }
 
-
-
+.gameSettings button.darkMode:hover,
+.labelActive.darkMode {
+  background-image: linear-gradient(to right top,
+   rgb(26, 113, 163), rgb(53, 157, 218));
+   background-color:rgb(53, 157, 218) ;
+  color: var(--color-white);
+}
 
 .playerTags {
   margin-top: 1rem;
@@ -56,17 +65,31 @@
   text-align: center;
   padding: 1rem 2rem;
   font-size: inherit;
+  font-weight: inherit;
 }
 
 .playerNames input::placeholder {
+  font-weight: inherit;
   text-align: center;
 }
 
 .gameStart button {
-    background-color: var(--color-green) ;
+  box-shadow: 0 0 2rem rgb(9, 122, 187);
+  background-image: linear-gradient(to right top, black, rgb(30, 33, 34));
+    background-color: rgb(30, 33, 34) ;
     color: var(--color-white);
     font-weight: bold;
 }
+
+.gameStart button:hover {
+    background-image: linear-gradient(to right top, black, rgb(15, 15, 15));
+    background-color: rgb(15, 15, 15) ;
+}
+
+.gameStart button:focus {
+  box-shadow: 0 0 1rem rgb(9, 122, 187);
+}
+
 
 .error {
   text-align: center;

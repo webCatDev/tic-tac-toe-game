@@ -1,4 +1,6 @@
 .restartDialog {
+  margin: 0 auto;
+  padding-top: 5rem;
     gap: 1rem;
   display: flex;
   flex-direction: column;
@@ -16,13 +18,32 @@ width: 5rem;
 height: 5rem;
 }
 
+.restartDialog.winner svg {
+  animation: bounce 1s infinite ease;
+
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
+   40% {transform: translateY(-30px);} 
+   60% {transform: translateY(-15px);} 
+}
+
 .restartDialog button {
-  background-color: var(--color-white);
-  border: 1px solid var(--color-black-light);
-  padding: 1rem 2rem;
+  border:none;
+  background-image: linear-gradient(to right top, black, rgb(30, 33, 34));
+  background-color: rgb(30, 33, 34) ;
+    color: var(--color-white);
+    font-weight: bold;
+    padding: 1rem 2rem;
+  }
+  
+  .restartButton {
+    box-shadow: 0 0 2rem rgb(9, 122, 187);
 }
 
 .restartDialog button:hover {
-  background-color: var(--color-black);
-  color: var(--color-white);
+ background-image: linear-gradient(to right top,
+   rgb(26, 113, 163), rgb(53, 157, 218));
+   background-color:rgb(53, 157, 218) ;
 }

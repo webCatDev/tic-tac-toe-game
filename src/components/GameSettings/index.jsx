@@ -167,7 +167,9 @@ const GameSettings = ({ dispatcher, gameState }) => {
             <label
               htmlFor="player-1-x"
               className={
-                playerInfo["player-1-tag"] === "X" ? classes.labelActive : ""
+                playerInfo["player-1-tag"] === "X"
+                  ? `${classes.labelActive} ${classes.darkMode}`
+                  : ""
               }
             >
               X
@@ -184,7 +186,9 @@ const GameSettings = ({ dispatcher, gameState }) => {
             <label
               htmlFor="player-1-o"
               className={
-                playerInfo["player-1-tag"] === "O" ? classes.labelActive : ""
+                playerInfo["player-1-tag"] === "O"
+                  ? `${classes.labelActive} ${classes.darkMode}`
+                  : ""
               }
             >
               O
@@ -193,9 +197,9 @@ const GameSettings = ({ dispatcher, gameState }) => {
         </div>
       </div>
 
-      
       <div className={classes.flexRow}>
         <button
+          className={gameState.isDarkMode && classes.darkMode}
           aria-label={
             gameState.lang === "Türkçe"
               ? "oyun dilini ingilizce yap"
@@ -207,6 +211,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
         </button>
 
         <button
+          className={gameState.isDarkMode && classes.darkMode}
           aria-label={
             isAgainstComputer
               ? toggleAgainstComputerText[0]
@@ -223,6 +228,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
 
       <div className={classes.flexRow}>
         <button
+          className={gameState.isDarkMode && classes.darkMode}
           aria-label={howToPlayText}
           onClick={() =>
             dispatcher({
@@ -247,6 +253,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
             document.getElementById("modal")
           )}
         <button
+          className={gameState.isDarkMode && classes.darkMode}
           aria-label={highScoresText}
           onClick={() =>
             dispatcher({
@@ -274,18 +281,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
 
       <div className={classes.flexRow}>
         <button
-          title={musicLabel}
-          aria-label={
-            gameState.isMusicOn
-              ? toggleMusicAriaLabel[0]
-              : toggleMusicAriaLabel[1]
-          }
-          onClick={() => dispatcher({ type: "handleToggleMusic" })}
-        >
-          {!gameState.isMusicOn && <IconForGameMusicOff />}
-          {gameState.isMusicOn && <IconForGameMusicOn />}
-        </button>
-        <button
+          className={gameState.isDarkMode && classes.darkMode}
           title={difficultyLabel}
           aria-label={difficultyTexts[difficultyIdx]}
           onClick={handleClickDifficulty}

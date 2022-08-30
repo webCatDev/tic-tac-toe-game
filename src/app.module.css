@@ -1,8 +1,8 @@
 .appContainer {
-  display: flex;
+  /* display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: column; */
   height: 100%;
 }
 .appContainer.darkMode {
@@ -11,9 +11,17 @@
 }
 
 .gameContainer {
+  margin: 0 auto;
+  padding-top: 5rem;
   transform: translateX(-1rem);
   opacity: 0;
   transition: all 0.5s ease;
+}
+
+@media only screen and (min-width: 90em) {
+  .gameContainer {
+    padding-top: 3rem;
+  }
 }
 
 .gameContainer.inGC.visible {
@@ -33,7 +41,8 @@
 .darkModeButton.darkMode svg {
   /* background-image: linear-gradient(
     to bottom left, rgba(240, 236, 230, 0.596), rgba(228, 209, 173, 0.61)); */
+  border-radius: 10rem;
   stroke: wheat;
-  box-shadow: 0 0 16rem 8rem wheat, 
-  inset 0 0 8rem 4rem rgba(226, 214, 193, 0.575) ;
+  box-shadow: 0 0 16rem 8rem wheat,
+    inset 0 0 80rem 4rem rgba(226, 214, 193, 0.623);
 }
