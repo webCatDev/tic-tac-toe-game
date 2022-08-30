@@ -12,10 +12,10 @@ const Square = ({ index,gameState, dispatcher, value }) => {
                 .style.setProperty(
                   "--color-square-bg",
                   gameState.currentPlayer === "X"
-                    ? "#fc9f95"
+                    ? "rgb(224, 35, 13)"
                     : gameState.isAgainstComputer
                     ? null
-                    : "#7177a0"
+                    : "rgb(76, 86, 153)"
                 )
             : document
                 .querySelector("html")
