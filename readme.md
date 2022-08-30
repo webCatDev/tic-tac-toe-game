@@ -1,10 +1,27 @@
-## Icon Attribution
+# How to install and run
 
-<div style="display:flex;flex-direction: column;">
-<a target="_blank" href="https://heroicons.com/">Hero Icons</a>
-<a target="_blank" href="https://www.flaticon.com/free-icons/tic-tac-toe" title="tic tac toe icons">Tic tac toe icons created by Freepik - Flaticon</a>
-<a target="_blank" href="https://www.flaticon.com/free-icons/kid-and-baby" title="kid and baby icons">Kid and baby icons created by Eucalyp - Flaticon</a>
-<a target="_blank" href="https://www.flaticon.com/free-icons/equal" title="equal icons">Equal icons created by Freepik - Flaticon</a>
-<a target="_blank" href="https://www.flaticon.com/free-icons/o" title="o icons">O icons created by Freepik - Flaticon</a>
-<a target="_blank" href="https://www.flaticon.com/free-icons/cross" title="cross icons">Cross icons created by Freepik - Flaticon</a>
-</div>
+Install command:
+`npm install`
+
+Run command(development server):
+`npm run dev`
+
+## Visit live site at
+
+[webcatdev-tic-tac-toe-game](https://webcatdev-tic-tac-toe-game.netlify.app/)
+
+## Icons
+
+<ul>
+    <li><a href="https://heroicons.com/">Hero Icons</a></li>
+    <li><a href="https://www.flaticon.com/free-icons/tic-tac-toe" >Tic tac toe icons created by Freepik - Flaticon</a></li>
+    <li><a href="https://www.flaticon.com/free-icons/kid-and-baby" >Kid and baby icons created by Eucalyp - Flaticon</a></li>
+    <li><a href="https://www.flaticon.com/free-icons/equal">Equal icons created by Freepik - Flaticon</a></li>
+    <li><a href="https://www.flaticon.com/free-icons/o">O icons created by Freepik - Flaticon</a></li>
+    <li><a href="https://www.flaticon.com/free-icons/cross">Cross icons created by Freepik - Flaticon</a></li>
+</ul>
+
+## Sound Effects
+
+<ul><li><a href="https://mixkit.co/free-sound-effects/game/">Mixkit</a></li>
+<li><a href="https://www.zapsplat.com/">Zapslat</a></li></ul>
