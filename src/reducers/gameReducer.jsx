@@ -10,6 +10,7 @@ const gameMusic = new Audio(gameMusicURL);
 
 export const initialState = {
   modalName: "",
+  isDarkMode: JSON.parse(localStorage.getItem('darkMode')) || true,
   lang: "English",
   difficulty: {
     level: ["EASY", "NORMAL", "HARD"],
@@ -347,6 +348,11 @@ const gameReducer = (state, action) => {
       return {
         ...state,
       };
+    case 'handleToggleDarkMode':
+      return {
+        ...state,
+        isDarkMode: !state.isDarkMode
+      }
     default:
       return state;
   }

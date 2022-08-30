@@ -10,6 +10,9 @@ import Square from "./components/Square";
 import gameReducer, { initialState } from "./reducers/gameReducer";
 import GameBoardSettings from "./components/GameBoardSettings";
 import useMountTransition from "./hooks/useMountTransition";
+import IconForDarkMode from "./components/Icons/IconForDarkMode";
+import IconForLightMode from "./components/Icons/IconForLightMode";
+import { createPortal } from "react-dom";
 
 function App() {
   const [state, dispatch] = useReducer(gameReducer, initialState);
@@ -17,10 +20,23 @@ function App() {
     !state.winner && state.didGameStart,
     500
   );
+
   const hasTransitionedInGS = useMountTransition(!state.didGameStart, 500);
+  const handleDarkMode = () => dispatch({ type: "handleToggleDarkMode" });
 
   return (
-    <>
+    <div
+      className={`${classes.appContainer} ${
+        state.isDarkMode && classes.darkMode
+      }`}
+    >
+      {createPortal(
+        <button className={`${classes.darkModeButton} ${state.isDarkMode && classes.darkMode }`} onClick={handleDarkMode}>
+          {state.isDarkMode ? <IconForDarkMode /> : <IconForLightMode />}
+        </button>,
+        document.getElementById("darkMode")
+      )}
+
       {(!state.didGameStart || hasTransitionedInGS) && (
         <div
           className={`${classes.gameSettingsContainer} ${
@@ -55,7 +71,7 @@ function App() {
       {state.winner && (
         <RestartDialog dispatcher={dispatch} gameState={state} />
       )}
-    </>
+    </div>
   );
 }
 

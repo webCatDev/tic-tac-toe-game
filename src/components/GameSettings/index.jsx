@@ -9,6 +9,7 @@ import HighScores from "../HighScores";
 import HowToPlay from "../HowToPlay";
 import useMountTransition from "../../hooks/useMountTransition";
 
+
 const GameSettings = ({ dispatcher, gameState }) => {
   // TEXTS DEPENDING ON SELECTED LANGUAGE
   const {
@@ -111,6 +112,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
     sessionStorage.setItem("difficultyIdx", JSON.stringify(idx));
     dispatcher({ type: "handleDifficultyChange", payload: { idx} });
   };
+
 
   return (
     <section className={classes.gameSettings}>

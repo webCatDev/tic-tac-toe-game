@@ -32,11 +32,31 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: .3rem;
   font-family: 'Merriweather', serif;
 }
+
+
 
 button {
   cursor: pointer;
   color: var(--color-black);
+}
+
+#root {
+  align-self: stretch;
+  flex: 1;
+}
+
+#darkMode {
+  position: fixed;
+  width: 2rem;
+  height: 2rem;
+  top: 0;
+  right: 2rem;
+  z-index: 100;
+}
+
+#darkMode button {
+  border: none;
+  background-color: transparent;
 }

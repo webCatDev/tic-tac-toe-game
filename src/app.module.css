@@ -1,20 +1,39 @@
+.appContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+.appContainer.darkMode {
+  background-color: rgb(19, 15, 15);
+  color: var(--color-white);
+}
+
 .gameContainer {
-    transform: translateX(-1rem);
-    opacity: 0;
-    transition: all .5s ease;
+  transform: translateX(-1rem);
+  opacity: 0;
+  transition: all 0.5s ease;
 }
 
 .gameContainer.inGC.visible {
-opacity: 1;
-transform: translateX(0);
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .gameSettingsContainer {
-    opacity: 0;
-    transition: all .5s ease;
+  opacity: 0;
+  transition: all 0.5s ease;
 }
 
 .gameSettingsContainer.inGS.visible {
-opacity: 1;
+  opacity: 1;
 }
 
+.darkModeButton.darkMode svg {
+  /* background-image: linear-gradient(
+    to bottom left, rgba(240, 236, 230, 0.596), rgba(228, 209, 173, 0.61)); */
+  stroke: wheat;
+  box-shadow: 0 0 16rem 8rem wheat, 
+  inset 0 0 8rem 4rem rgba(226, 214, 193, 0.575) ;
+}
