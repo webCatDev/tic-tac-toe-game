@@ -12,7 +12,7 @@ const RestartDialog = ({ dispatcher, gameState }) => {
   return (
     <div
       className={`${classes.restartDialog} ${
-        (gameState.winner === "X" || gameState.winner === "O") && classes.winner
+        (gameState.winner === "X" || gameState.winner === "O") ? classes.winner : undefined
       }`}
     >
       <h1>

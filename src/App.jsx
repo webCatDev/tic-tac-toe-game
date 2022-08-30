@@ -24,14 +24,16 @@ function App() {
   const hasTransitionedInGS = useMountTransition(!state.didGameStart, 500);
   const handleDarkMode = () => dispatch({ type: "handleToggleDarkMode" });
 
+  console.log(state.isDarkMode)
+
   return (
     <div
       className={`${classes.appContainer} ${
-        state.isDarkMode && classes.darkMode
+        state.isDarkMode ? classes.darkMode : ''
       }`}
     >
       {createPortal(
-        <button className={`${classes.darkModeButton} ${state.isDarkMode && classes.darkMode }`} onClick={handleDarkMode}>
+        <button className={`${classes.darkModeButton} ${state.isDarkMode ?  classes.darkMode : '' }`} onClick={handleDarkMode}>
           {state.isDarkMode ? <IconForDarkMode /> : <IconForLightMode />}
         </button>,
         document.getElementById("darkMode")

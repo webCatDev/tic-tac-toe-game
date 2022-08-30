@@ -25,8 +25,6 @@ const GameSettings = ({ dispatcher, gameState }) => {
     playerNamePlaceholder,
     player2Label,
     playerTagLabel,
-    musicLabel,
-    toggleMusicAriaLabel,
     startGameText,
     duplicateNameError,
   } = Languages[gameState.lang].gameSettings;
@@ -199,7 +197,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
 
       <div className={classes.flexRow}>
         <button
-          className={gameState.isDarkMode && classes.darkMode}
+          className={gameState.isDarkMode ? classes.darkMode : ''}
           aria-label={
             gameState.lang === "Türkçe"
               ? "oyun dilini ingilizce yap"
@@ -211,7 +209,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
         </button>
 
         <button
-          className={gameState.isDarkMode && classes.darkMode}
+          className={gameState.isDarkMode ? classes.darkMode : ''}
           aria-label={
             isAgainstComputer
               ? toggleAgainstComputerText[0]
@@ -228,7 +226,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
 
       <div className={classes.flexRow}>
         <button
-          className={gameState.isDarkMode && classes.darkMode}
+          className={gameState.isDarkMode ? classes.darkMode : ''}
           aria-label={howToPlayText}
           onClick={() =>
             dispatcher({
@@ -253,7 +251,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
             document.getElementById("modal")
           )}
         <button
-          className={gameState.isDarkMode && classes.darkMode}
+          className={gameState.isDarkMode ? classes.darkMode : ''}
           aria-label={highScoresText}
           onClick={() =>
             dispatcher({
@@ -281,7 +279,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
 
       <div className={classes.flexRow}>
         <button
-          className={gameState.isDarkMode && classes.darkMode}
+          className={gameState.isDarkMode ? classes.darkMode : ''}
           title={difficultyLabel}
           aria-label={difficultyTexts[difficultyIdx]}
           onClick={handleClickDifficulty}
