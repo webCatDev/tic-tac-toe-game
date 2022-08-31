@@ -277,7 +277,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
           )}
       </div>
 
-      <div className={classes.flexRow}>
+      {isAgainstComputer && <div className={classes.flexRow}>
         <button
           className={gameState.isDarkMode ? classes.darkMode : ''}
           title={difficultyLabel}
@@ -286,7 +286,7 @@ const GameSettings = ({ dispatcher, gameState }) => {
         >
           {difficultyTexts[difficultyIdx]}
         </button>
-      </div>
+      </div>}
 
       {error && <p className={classes.error}>{error}</p>}
       <div className={classes.gameStart}>
