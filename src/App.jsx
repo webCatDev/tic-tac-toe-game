@@ -24,8 +24,6 @@ function App() {
   const hasTransitionedInGS = useMountTransition(!state.didGameStart, 500);
   const handleDarkMode = () => dispatch({ type: "handleToggleDarkMode" });
 
-  console.log(state.isDarkMode)
-
   return (
     <div
       className={`${classes.appContainer} ${
